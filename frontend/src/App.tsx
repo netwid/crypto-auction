@@ -22,6 +22,9 @@ const products: Product[] = [
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
     imageAlt: '??',
     owner: 'Kds..sdf',
+    bid: 1247573,
+    bidder: 'ftfhfjf',
+    endTime: new Date().getTime() + 3600000
   },
   {
     id: 2,
@@ -32,6 +35,9 @@ const products: Product[] = [
     imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/f/f0/Gregory_Caracal.jpg',
     imageAlt: '?',
     owner: 'Kds..sdf',
+    bid: 146523,
+    bidder: 'ftfhfjf',
+    endTime: new Date().getTime() + 3600000
   },
   {
     id: 3,
@@ -42,6 +48,9 @@ const products: Product[] = [
     imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/b/bf/Big_Floppa_and_Justin_2_%28cropped%29.jpg',
     imageAlt: '?',
     owner: 'Kds..sdf',
+    bid: 14723,
+    bidder: 'ftfhfjf',
+    endTime: new Date().getTime() + 3600000
     
   },
   {
@@ -53,7 +62,9 @@ const products: Product[] = [
     imageSrc: 'https://i1.sndcdn.com/artworks-vog58LBUoWgkjgPZ-6Ru4Hg-t500x500.jpg',
     imageAlt: '?',
     owner: 'Kds..sdf',
-    
+    bid: 1254543,
+    bidder: 'ftfhfjf',
+    endTime: new Date().getTime() + 3600000
   },
   {
     id: 5,
@@ -64,7 +75,9 @@ const products: Product[] = [
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
     imageAlt: '??',
     owner: 'Kds..sdf',
-    
+    bid: 124574753,
+    bidder: 'ftfhfjf',
+    endTime: new Date().getTime() + 3600000
   },
   {
     id: 6,
@@ -75,7 +88,9 @@ const products: Product[] = [
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
     imageAlt: '??',
     owner: 'Kds..sdf',
-    
+    bid: 1464723,
+    bidder: 'ftfhfjf',
+    endTime: new Date().getTime() + 3600000
   },
   {
     id: 7,
@@ -86,7 +101,9 @@ const products: Product[] = [
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
     imageAlt: '??',
     owner: 'Kds..vdf',
-    
+    bid: 123,
+    bidder: 'ftfhfjf',
+    endTime: new Date().getTime() + 3600000
   },
   {
     id: 8,
@@ -97,7 +114,9 @@ const products: Product[] = [
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
     imageAlt: '??',
     owner: 'Kds..sfghf',
-  
+    bid: 132323,
+    bidder: 'ftfhfjf',
+    endTime: new Date().getTime() + 3600000
   },
   {
     id: 9,
@@ -108,7 +127,9 @@ const products: Product[] = [
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
     imageAlt: '??',
     owner: 'Kds..gsdf',
-  
+    bid: 124553,
+    bidder: 'gdhfftfhfjf',
+    endTime: new Date().getTime() + 1000000
   },
   {
     id: 10,
@@ -119,7 +140,9 @@ const products: Product[] = [
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
     imageAlt: '??',
     owner: '248s..sdf',
-  
+    bid: 1275473,
+    bidder: 'shftfhfjf',
+    endTime: new Date().getTime() + 100000000
   },
   {
     id: 11,
@@ -130,7 +153,9 @@ const products: Product[] = [
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
     imageAlt: '??',
     owner: '248s..sdf',
-  
+    bid: 123,
+    bidder: 'ftfhsdfjf',
+    endTime: new Date().getTime() + 100000
   },
   {
     id: 12,
@@ -141,7 +166,9 @@ const products: Product[] = [
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
     imageAlt: '??',
     owner: '248s..sdf',
-  
+    bid: 123,
+    bidder: 'ftfhddffjf',
+    endTime: new Date().getTime() + 100000000000
   },
 ]
 

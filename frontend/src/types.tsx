@@ -7,5 +7,8 @@ type Product = {
   imageSrc: string,
   imageAlt: string,
   owner: string,
+  bid: number,
+  bidder: string,
+  endTime: number
 }
 export default Product
