@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const WalletAddress = () => {
     const [address, setAdrress] = useState("");
@@ -8,7 +8,9 @@ export const WalletAddress = () => {
         setAdrress(account);
     }
 
-    updateAddress();
+    useEffect(() => {
+        updateAddress()
+    });
 
     return (
         <div>Addr: {address}</div>
