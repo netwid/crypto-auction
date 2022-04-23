@@ -5,7 +5,7 @@ export const WalletAddress = () => {
 
     const updateAddress = async () => {
         const [account] = await ethereum.request({ method: 'eth_requestAccounts' });
-        setAdrress(account);
+        setAdrress(account.slice(2, 5) + '...' + account.slice(-3));
     }
 
     useEffect(() => {
@@ -13,6 +13,6 @@ export const WalletAddress = () => {
     });
 
     return (
-        <div>Addr: {address}</div>
+        <div>Your wallet: {address}</div>
     )
 }

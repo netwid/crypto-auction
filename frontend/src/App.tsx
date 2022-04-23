@@ -171,7 +171,6 @@ function App() {
       <Header
         activePage={activePage}
         setActivePage={setActivePage}
-        contract={contract as unknown as ethers.Contract}
       />
       {activePage === 0 ?
 
