@@ -43,7 +43,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
 
 
         <div className='text-2xl mb-3'>
-          Time to end: {timer.days} days {timer.hours}:{timer.minutes}:{timer.seconds}
+          Time to end: {timer.days} days {(timer.hours < 10 ? '0' : '') + timer.hours}:{(timer.minutes < 10 ? '0' : '') + timer.minutes}:{(timer.seconds < 10 ? '0' : '') + timer.seconds}
         </div>
 
         <form>
@@ -51,7 +51,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
 
             <div>
               <div className='text-indigo-600 flex justify-center'>Set new bid</div>
-              <div>Minimal value: </div>
+              <div>Minimal value: {props.products[activeElement].bid + 1}</div>
               <div>Enter value:
                 <input
                   type="number"
