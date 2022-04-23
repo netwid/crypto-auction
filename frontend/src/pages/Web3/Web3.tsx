@@ -1,5 +1,7 @@
+import { requestAccess } from './Utils';
+
 export const Web3 = () => {
     return (
-        <div>Web3 page</div>
+        <button onClick={requestAccess}>Запросить авторизацию</button>
     )
 }
