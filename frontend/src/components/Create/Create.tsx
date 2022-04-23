@@ -12,6 +12,10 @@ export const Create = () => {
     }
 
     return (
-        <button onClick={create}>Create new lot</button>
+        <div className='text-white border-white border-2 rounded-md'>
+            <button className="p-1" onClick={create}>
+                Create new auction +
+            </button>
+        </div>
     )
 }

@@ -2,11 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Wallet } from './Wallet/Wallet';
-
-let yourWallet = 'Lfs..Kjwe'
-let yourBalance = '123984'
-
-
+import { Create } from './Create/Create';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -56,15 +52,8 @@ export default function Header( props:{ setActivePage: Function, activePage: num
                   </div>
                 </div>
               </div>
-              <div className='text-white border-white border-2 rounded-md'>
-                <button
-                  type="button"
-                  className="p-1"
-                >
-                  Create new auction +
-
-                </button>
-              </div>
+              
+              <Create />
 
               <Wallet />
 
