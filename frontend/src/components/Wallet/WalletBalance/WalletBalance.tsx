@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { ethers } from 'ethers';
 
-declare var ethereum: any
-
 export const WalletBalance = () => {
     const [balance, setBalance] = useState("");
 

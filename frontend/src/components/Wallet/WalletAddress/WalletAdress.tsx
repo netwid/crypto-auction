@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-declare var ethereum: any
-
 export const WalletAddress = () => {
     const [address, setAdrress] = useState("");
 
