@@ -11,90 +11,6 @@ function classNames(...classes: string[]) {
 let bid = 23423;
 let bidder = "LKj..KJds";
 
-const products = [
-  {
-    id: 1,
-    name: 'floppa',
-    description: 'a very nice loved cat',
-    href: '#',
-    price: '$48',
-    imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
-    imageAlt: '??',
-    owner: 'Kds..sdf',
-    
-  },
-  {
-    id: 2,
-    name: 'floppa2',
-    href: '#',
-    price: '$35',
-    imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/f/f0/Gregory_Caracal.jpg',
-    imageAlt: '?',
-    owner: '2Jsd..Lh',
-  },
-  {
-    id: 3,
-    name: 'floppa3',
-    href: '#',
-    price: '$89',
-    imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/b/bf/Big_Floppa_and_Justin_2_%28cropped%29.jpg',
-    imageAlt: '?',
-    owner: '3Kds..sdf',
-    
-  },
-  {
-    id: 4,
-    name: 'floppa4',
-    href: '#',
-    price: '$35',
-    imageSrc: 'https://i1.sndcdn.com/artworks-vog58LBUoWgkjgPZ-6Ru4Hg-t500x500.jpg',
-    imageAlt: '?',
-    owner: '4Kds..sdf',
-    
-  },
-  {
-    id: 5,
-    name: 'floppa',
-    href: '#',
-    price: '$48',
-    imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
-    imageAlt: '??',
-    owner: '34Kds..sdf',
-    
-  },
-  {
-    id: 6,
-    name: 'floppa',
-    href: '#',
-    price: '$48',
-    imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
-    imageAlt: '??',
-    owner: '987Kds..sdf',
-    
-  },
-  {
-    id: 7,
-    name: 'floppa',
-    href: '#',
-    price: '$48',
-    imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
-    imageAlt: '??',
-    owner: '87Kds..sdf',
-    
-  },
-  {
-    id: 8,
-    name: 'floppa',
-    href: '#',
-    price: '$48',
-    imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
-    imageAlt: '??',
-    owner: '248s..sdf',
-    
-  },
-]
-
-
 export default function Page(props: { products: Array<Product>, offset: number }) {
   const [open, setOpen] = useState(false)
   const [activeElement, setActiveElement] = useState(0)
@@ -191,7 +107,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
                         </section>
 
                     <section className='mt-4 text-2xl'>
-                      <div>Owner: {products[activeElement].owner}</div>
+                      <div>Owner: {props.products[activeElement].owner}</div>
                       <div>Highest bid: {bid}</div>
                       <div>Bidder: {bidder}</div>
                     </section>
