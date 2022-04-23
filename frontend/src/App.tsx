@@ -110,25 +110,34 @@ const products = [
 
 function App() {
   const [offset, setOffset] = useState(0);
-
-
-
+  const [activePage, setActivePage] = useState(0)
 
   return (
 
     <>
-      <Header />
-      <Page
-        offset={offset}
-        products={products}
-      />
-      <Scroll
-        items={products}
-        itemsPerPage={8}
-        setOffset={setOffset}
-        offset={offset + 1}
-      />
 
+
+      <Header
+        activePage={activePage}
+        setActivePage={setActivePage}
+      />
+      {activePage === 0 ?
+
+        <>
+          <Page
+            offset={offset}
+            products={products}
+          />
+          <Scroll
+            items={products}
+            itemsPerPage={8}
+            setOffset={setOffset}
+            offset={offset + 1}
+          />
+        </> :
+        <>
+        </>
+      }
 
       <ul>
         <li>
