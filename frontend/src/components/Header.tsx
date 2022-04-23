@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Wallet } from './Wallet/Wallet';
 
 let yourWallet = 'Lfs..Kjwe'
 let yourBalance = '123984'
@@ -65,11 +66,7 @@ export default function Header( props:{ setActivePage: Function, activePage: num
                 </button>
               </div>
 
-              <div className="absolute inset-y-0 p-2 right-0  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 text-white border-white border-2 rounded-md">
-                <div className='pr-4'> Your wallet: {yourWallet} </div>
-                <div>Your balance: {yourBalance} </div>
-
-              </div>
+              <Wallet />
 
             </div>
           </div>
