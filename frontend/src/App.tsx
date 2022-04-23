@@ -5,7 +5,7 @@ import { Web3 } from './pages/Web3/Web3';
 import Header from './components/Header';
 import Page from './components/Page';
 import Scroll from './components/Scroll';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Product from './types';
 import { ethers } from "ethers";
 import Auction from './Auction.json';
@@ -176,11 +176,20 @@ function App() {
   const [offset, setOffset] = useState(0);
   const [myOffset, setMyOffset] = useState(0);
   const [activePage, setActivePage] = useState(0)
+  const p: Product[] = [];
+  const [fetchedProducts, setFetchedProducts] = useState(p)
 
   const contractAddress = '';
   let provider: ethers.providers.Web3Provider;
   let signer;
   let contract;
+
+  useEffect(() => {
+
+    //fetch products
+    setFetchedProducts(products)
+
+  },[])
 
   useRef(() => {
     if (!ethereum)
