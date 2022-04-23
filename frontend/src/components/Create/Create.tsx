@@ -19,7 +19,7 @@ export const Create = () => {
 
     return (
         <>
-            <div className='text-white border-white border-2 rounded-md'>
+            <div className='text-white h-10 border-white border-2 rounded-md'>
                 <button className="p-1" onClick={() => setOpen(true)}>
                     Create new auction +
                 </button>
