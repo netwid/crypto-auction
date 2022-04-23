@@ -1,12 +1,14 @@
+import { BigNumber } from "ethers";
+
 export type Lot  = {
-    id: number,
+    id: BigNumber,
     name: string,
     description: string,
     imageURL: string,
-    minimalBidIncrement: number,
-    auctionEndTime: number,
+    minimalBidIncrement: BigNumber,
+    auctionEndTime: BigNumber,
     owner: string,
     closed: boolean,
-    highestBid: number,
+    highestBid: BigNumber,
     highestBidder: number,
 };

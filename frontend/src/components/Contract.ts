@@ -19,10 +19,10 @@ export const placeNewBid = async (lotId: number, bidAmount: number) => {
 };
 
 
-export const getAllLots = async (): Promise<Lot[]> => {
+export const getAllLots = async (): Promise<Array<Lot>> => {
         const unformatedLots: Lot[] = await contract.getAllLots();
 
-        const allLots: Lot[] = [];
+        const allLots: Array<Lot> = [];
 
         for (let lot of unformatedLots) {
 
