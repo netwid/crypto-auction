@@ -1,24 +1,24 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-
+import Product from '../types';
 let resultsNumber = 20;
 
-export default function Scroll({ items, itemsPerPage, offset, setOffset }) {
-  const [currentItems, setCurrentItems] = useState(null);
+export default function Scroll(props: { items: Array<Product>, itemsPerPage: number, offset: number, setOffset: Function }) {
+  const [currentItems, setCurrentItems] = useState(props.items);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
 
   useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage;
+    const endOffset = itemOffset + props.itemsPerPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    setCurrentItems(items.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(items.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage]);
+    setCurrentItems(props.items.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(props.items.length / props.itemsPerPage));
+  }, [itemOffset, props.itemsPerPage]);
 
   const handlePageClick = (event: { selected: number; }) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
-    setOffset(newOffset);
+    const newOffset = (event.selected * props.itemsPerPage) % props.items.length;
+    props.setOffset(newOffset);
   };
 
 
@@ -26,8 +26,8 @@ export default function Scroll({ items, itemsPerPage, offset, setOffset }) {
     <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
       <div>
         <p className="text-sm text-gray-700">
-          Showing <span className="font-medium">{offset}</span> to <span className="font-medium">{(items.length - offset > 7) ? offset + 7 : items.length}</span> of{' '}
-          <span className="font-medium">{items.length}</span> results
+          Showing <span className="font-medium">{props.offset}</span> to <span className="font-medium">{(props.items.length - props.offset > 7) ? props.offset + 7 : props.items.length}</span> of{' '}
+          <span className="font-medium">{props.items.length}</span> results
         </p>
       </div>
       <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">

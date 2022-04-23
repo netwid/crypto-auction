@@ -6,8 +6,9 @@ import Header from './components/Header';
 import Page from './components/Page';
 import Scroll from './components/Scroll';
 import { useState } from 'react';
+import Product from './types';
 
-const products = [
+const products: Array<Product> = [
   {
     id: 1,
     name: 'floppa',
@@ -21,6 +22,7 @@ const products = [
   {
     id: 2,
     name: 'floppa2',
+    description: 'a very nice loved cat',
     href: '#',
     price: '$35',
     imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/f/f0/Gregory_Caracal.jpg',
@@ -29,6 +31,7 @@ const products = [
   {
     id: 3,
     name: 'floppa3',
+    description: 'a very nice loved cat',
     href: '#',
     price: '$89',
     imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/b/bf/Big_Floppa_and_Justin_2_%28cropped%29.jpg',
@@ -37,6 +40,7 @@ const products = [
   {
     id: 4,
     name: 'floppa4',
+    description: 'a very nice loved cat',
     href: '#',
     price: '$35',
     imageSrc: 'https://i1.sndcdn.com/artworks-vog58LBUoWgkjgPZ-6Ru4Hg-t500x500.jpg',
@@ -45,6 +49,7 @@ const products = [
   {
     id: 5,
     name: 'floppa',
+    description: 'a very nice loved cat',
     href: '#',
     price: '$48',
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
@@ -53,6 +58,7 @@ const products = [
   {
     id: 6,
     name: 'floppa',
+    description: 'a very nice loved cat',
     href: '#',
     price: '$48',
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
@@ -61,6 +67,7 @@ const products = [
   {
     id: 7,
     name: 'floppa',
+    description: 'a very nice loved cat',
     href: '#',
     price: '$48',
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
@@ -69,6 +76,7 @@ const products = [
   {
     id: 8,
     name: 'floppa',
+    description: 'a very nice loved cat',
     href: '#',
     price: '$48',
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
@@ -77,6 +85,7 @@ const products = [
   {
     id: 9,
     name: 'floppa',
+    description: 'a very nice loved cat',
     href: '#',
     price: '$48',
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
@@ -85,6 +94,7 @@ const products = [
   {
     id: 10,
     name: 'floppa',
+    description: 'a very nice loved cat',
     href: '#',
     price: '$48',
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
@@ -93,6 +103,7 @@ const products = [
   {
     id: 11,
     name: 'floppa2',
+    description: 'a very nice loved cat',
     href: '#',
     price: '$35',
     imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/f/f0/Gregory_Caracal.jpg',
@@ -101,6 +112,7 @@ const products = [
   {
     id: 12,
     name: 'floppa2',
+    description: 'a very nice loved cat',
     href: '#',
     price: '$35',
     imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/f/f0/Gregory_Caracal.jpg',
