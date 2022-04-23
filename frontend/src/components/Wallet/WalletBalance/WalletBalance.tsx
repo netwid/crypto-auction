@@ -21,6 +21,6 @@ export const WalletBalance = () => {
     }, []);
 
     return (
-        <div>Balance: {balance}</div>
+        <div>Your balance: {balance}</div>
     )
 }

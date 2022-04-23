@@ -1,18 +1,13 @@
 import { Fragment, SetStateAction, useState } from 'react'
 import { Disclosure, Menu, Transition, Dialog } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import { ethers } from 'ethers'
-
-let yourWallet = 'Lfs..Kjwe'
-let yourBalance = '123984'
-
-
+import { HeaderInfo } from './HeaderInfo/HeaderInfo';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Header( props:{ setActivePage: Function, activePage: number, contract: ethers.Contract }) {
+export default function Header( props:{ setActivePage: Function, activePage: number }) {
   const navigation = [
     { name: 'All lots', action: () => props.setActivePage(0), current: props.activePage == 0 },
     { name: 'My lots', action: () => props.setActivePage(1), current: props.activePage == 1 }
@@ -68,10 +63,13 @@ export default function Header( props:{ setActivePage: Function, activePage: num
               </div>
 
               <div className="absolute inset-y-0 p-2 right-0  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 text-white border-white border-2 rounded-md">
-                <div className='pr-4'> Your wallet: {yourWallet} </div>
-                <div>Your balance: {yourBalance} </div>
+                <div className='pr-4'> Your wallet: {} </div>
+                <div>Your balance: {} </div>
 
               </div>
+              
+              <HeaderInfo />
+
 
             </div>
           </div>

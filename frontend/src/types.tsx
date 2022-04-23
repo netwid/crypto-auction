@@ -6,5 +6,6 @@ type Product = {
   price: string,
   imageSrc: string,
   imageAlt: string,
+  owner: string,
 }
 export default Product
