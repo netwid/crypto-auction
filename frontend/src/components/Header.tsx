@@ -1,6 +1,7 @@
-import { Fragment } from 'react'
+import { Fragment, useState, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Wallet } from './Wallet/Wallet';
 
 let yourWallet = 'Lfs..Kjwe'
 let yourBalance = '123984'
@@ -16,6 +17,16 @@ export default function Header( props:{ setActivePage: Function, activePage: num
     { name: 'All lots', action: () => props.setActivePage(0), current: props.activePage == 0 },
     { name: 'My lots', action: () => props.setActivePage(1), current: props.activePage == 1 }
   ]
+
+  const [wallet, setWallet] = useState({});
+
+  useEffect(() => {
+    const f = async () => {
+
+    }
+
+    f();
+  });
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -66,9 +77,7 @@ export default function Header( props:{ setActivePage: Function, activePage: num
               </div>
 
               <div className="absolute inset-y-0 p-2 right-0  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 text-white border-white border-2 rounded-md">
-                <div className='pr-4'> Your wallet: {yourWallet} </div>
-                <div>Your balance: {yourBalance} </div>
-
+                <Wallet/>
               </div>
 
             </div>

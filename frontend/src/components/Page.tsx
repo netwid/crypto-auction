@@ -1,7 +1,7 @@
 import { Fragment, SetStateAction, useState } from 'react'
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import Product from '../types';
+import Product from '../utils/types';
 
 
 function classNames(...classes: string[]) {

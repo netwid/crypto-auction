@@ -1,27 +1,70 @@
 import { ethers } from "ethers";
-import { LotApi } from './LotApi';
-import Auction from '../Auction.json';
+import Auction from '../utils/Auction.json';
+import { Lot } from "./Lot";
 
-const contractAddress = '';
+const contractAddress = '0xcB7A4F7027ef75617aaf948Ebe2739AE063a8A20';
 const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 const contract = new ethers.Contract(contractAddress, Auction.abi, signer);
 
-export const buyLot = async (lotId: number, bid: number) => {
-    await contract.placeBid('1212211', {
-        value: ethers.utils.parseEther('0.1')
-    })
+// bid amount - amount for new bid in wei
+export const placeNewBid = async (lotId: number, bidAmount: number) => {
+    const bidRes = await contract.placeBid(lotId, {
+        value: bidAmount
+    });
+
+    await bidRes.wait();
+
+    console.log(bidRes);
 };
 
-export const getAllLots = async (): Promise<LotApi[]> => {
-    return await contract.getAllLots();
+
+export const getAllLots = async (): Promise<Lot[]> => {
+        const unformatedLots: Lot[] = await contract.getAllLots();
+
+        const allLots: Lot[] = [];
+
+        for (let lot of unformatedLots) {
+
+            // to properly format lot info
+            let formatLot: Lot = {
+                id: lot.id,
+                name: lot.name,
+                description: lot.description,
+                imageURL: lot.imageURL,
+                owner: lot.owner,
+                closed: lot.closed,
+                highestBid: lot.highestBid,
+                highestBidder: lot.highestBidder,
+                minimalBidIncrement: lot.minimalBidIncrement,
+                auctionEndTime: lot.auctionEndTime
+            }
+            allLots.push(formatLot);
+        }
+        console.log(allLots);
+        return allLots;
 }
 
-export const startNewAuction = async (name: string, description: string, imageURL: string, 
-                                      minimalBidIncrement: number, auctionEndTime: number) => {
-    await contract.startNewAuction(name, description, imageURL, minimalBidIncrement, auctionEndTime);
+export const startNewAuction = async (
+    name: string,
+    description: string,
+    imageURL: string,
+    minimalBidIncrement: number,
+    auctionEndTime: number) => {
+
+    const contr = await contract.startNewAuction(name,
+        description, imageURL, minimalBidIncrement, auctionEndTime);
+
+    await contr.wait();
+
+    console.log(contr);
+
 }
 
 export const closeAuction = async (lotId: number) => {
-    await contract.closeAuction(lotId);
+    const auc = await contract.closeAuction(lotId);
+
+    await auc.wait();
+
+    console.log(auc);
 }

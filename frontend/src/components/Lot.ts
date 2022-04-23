@@ -1,4 +1,4 @@
-export interface LotApi {
+export type Lot  = {
     id: number,
     name: string,
     description: string,

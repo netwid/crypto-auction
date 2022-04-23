@@ -6,7 +6,7 @@ import Header from './components/Header';
 import Page from './components/Page';
 import Scroll from './components/Scroll';
 import { useState } from 'react';
-import Product from './types';
+import Product from './utils/types';
 
 const products: Array<Product> = [
   {

@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import Product from '../types';
+import Product from '../utils/types';
 let resultsNumber = 20;
 
 export default function Scroll(props: { items: Array<Product>, itemsPerPage: number, offset: number, setOffset: Function }) {
