@@ -12,6 +12,7 @@ contract Auction {
         uint256 auctionEndTime;
         address owner;
         // state
+        bool closed;
         uint256 highestBid;
         address highestBidder;
     }
@@ -27,11 +28,11 @@ contract Auction {
         return lots;
     }
 
-    function placeBid(uint256 lotId) public payable onlyLotExists(lotId) {
+    function placeBid(uint256 lotId) public payable onlyLotActive(lotId) {
         Lot memory lot = lots[lotId];
 
         // checks
-        if (lot.auctionEndTime >= block.timestamp) {
+        if (lot.auctionEndTime <= block.timestamp) {
             revert("Auction has already ended");
         }
 
@@ -74,19 +75,51 @@ contract Auction {
             _minimalBidIncrement,
             _auctionEndTime,
             msg.sender,
+            false,
             0,
             msg.sender
         );
 
         lots.push(newLot);
-        emit NewAuctionStarted(block.timestamp, _auctionEndTime, _name);
+        emit AuctionStarted(block.timestamp, _auctionEndTime, _name);
     }
 
-    modifier onlyLotExists(uint256 lotId) {
+    function closeAuction(uint256 lotId) public onlyLotActive(lotId) {
+        Lot memory lot = lots[lotId];
+
+        if (lot.owner != msg.sender) {
+            revert("Only owner can close auction");
+        }
+
+        if (lot.auctionEndTime > block.timestamp) {
+            revert("You cannot close auction before trading ends");
+        }
+
+        lots[lotId].closed = true;
+        if (lot.highestBid == 0) {
+            emit EmptyAuction(lot.id);
+            return;
+        }
+
+        payable(lot.owner).transfer(lot.highestBid);
+        emit AuctionEnded(lot.highestBidder, lot.highestBid, lot.id);
+    }
+
+    modifier onlyLotActive(uint256 lotId) {
         require(lotId <= counter && lotId != 0, "This lot doesn't exist");
+        require(
+            lots[lotId].closed == false,
+            "This lot has already been closed"
+        );
         _;
     }
 
-    event LogBid(address bidder, uint256 bid, uint auctionId);
-    event NewAuctionStarted(uint startTime, uint endTime, string lotName);
+    event LogBid(address bidder, uint256 bid, uint256 auctionId);
+    event AuctionStarted(uint256 startTime, uint256 endTime, string lotName);
+    event EmptyAuction(uint256 auctiodId);
+    event AuctionEnded(
+        address highestBidder,
+        uint256 highestBid,
+        uint256 auctionId
+    );
 }
