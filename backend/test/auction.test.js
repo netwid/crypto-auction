@@ -9,7 +9,7 @@ describe("Auction", () => {
     beforeEach(async () => {
         [owner, bidder1, bidder2] = await ethers.getSigners();
         const Auction = await ethers.getContractFactory("Auction", owner);
-        auction =  await Auction.deploy();
+        auction = await Auction.deploy();
         await auction.deployed();
         console.log(auction.address);
 
@@ -18,6 +18,7 @@ describe("Auction", () => {
     it('should be deployed', async () => {
         expect(auction.address).to.be.properAddress;
     });
+
 
     it("should be creatable", async () => {
         const name = "cat";
@@ -34,5 +35,7 @@ describe("Auction", () => {
         expect(auc1.description).to.equal(descr);
         expect(auc1.imageURL).to.equal(imageURL);
         expect(auc1.owner).to.equal(owner.address);
-    })
+    });
+
+
 });
