@@ -2,13 +2,14 @@ import { Fragment, SetStateAction, useState } from 'react'
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import Product from '../types';
+import { useTimer } from 'react-timer-hook'
 
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-let bid = 23423;
+let bid = 23423;  
 let bidder = "LKj..KJds";
 
 export default function Page(props: { products: Array<Product>, offset: number }) {
@@ -21,6 +22,56 @@ export default function Page(props: { products: Array<Product>, offset: number }
   }
 
 
+  const Desc = () => {
+    const timer = useTimer({ expiryTimestamp: new Date(props.products[activeElement].endTime), autoStart: true })
+    return <><section className='mt-4 text-2xl'>
+      <div>Owner: {props.products[activeElement].owner}</div>
+      <div>Highest bid: {props.products[activeElement].bid}</div>
+      <div>Bidder: {props.products[activeElement].bidder}</div>
+    </section>
+      <section aria-labelledby="options-heading" className="mt-4">
+        <h3 id="options-heading" className="sr-only">
+          Bid options
+        </h3>
+
+
+
+        <div className='text-2xl mb-3'>
+          Time to end: {timer.days} days {(timer.hours < 10 ? '0' : '') + timer.hours}:{(timer.minutes < 10 ? '0' : '') + timer.minutes}:{(timer.seconds < 10 ? '0' : '') + timer.seconds}
+        </div>
+
+        <form>
+          <div className='bg-white text-2xl border-2 p-4 border-indigo-600 rounded-md'>
+
+            <div>
+              <div className='text-indigo-600 flex justify-center'>Set new bid</div>
+              <div>Minimal value: {props.products[activeElement].bid + 1}</div>
+              <div>Enter value:
+                <input
+                  type="number"
+                  placeholder="0"
+                  className="h-7 ml-7 w-60 bg-transparent border-2 border-grey"
+                  style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
+                  min={props.products[activeElement].bid + 1}
+                />
+
+              </div>
+            </div>
+            <div className='flex justify-center'>
+
+              <button
+                type="submit"
+                className="mt-6 bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Create bid
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </section>
+    </>
+  }
 
   return (
     <div>

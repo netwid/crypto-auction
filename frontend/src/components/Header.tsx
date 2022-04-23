@@ -163,6 +163,7 @@ export default function Header( props:{ setActivePage: Function, activePage: num
                               type="text"
                               className="h-7 ml-6 w-60 bg-transparent border-2 border-grey"
                               style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
+                              min={1}
                             />
                           </div>
                           <div className=''>
@@ -181,6 +182,7 @@ export default function Header( props:{ setActivePage: Function, activePage: num
                                     placeholder="0"
                                     className="h-7 ml-7 w-60 bg-transparent border-2 border-grey"
                                     style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
+                                    min={1}
                                 />
                            </div>
                            <div className="flex justify-center">
