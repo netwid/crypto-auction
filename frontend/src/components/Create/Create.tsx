@@ -8,7 +8,7 @@ export const Create = () => {
         const minimalBidIncrement = Number.parseInt(prompt('Enter a minimalBidIncrement') as string);
         const auctionEndTime = Number.parseInt(prompt('Enter a auctionEndTime') as string);
 
-        startNewAuction(name, description, imageURL, minimalBidIncrement, auctionEndTime);
+        //startNewAuction(name, description, imageURL, minimalBidIncrement, auctionEndTime);
     }
 
     return (
