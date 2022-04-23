@@ -7,7 +7,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Header( props:{ setActivePage: Function, activePage: number}) {
+export default function Header( props:{ setActivePage: Function, activePage: number }) {
   const navigation = [
     { name: 'All lots', action: () => props.setActivePage(0), current: props.activePage == 0 },
     { name: 'My lots', action: () => props.setActivePage(1), current: props.activePage == 1 }

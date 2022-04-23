@@ -5,8 +5,10 @@ import { Web3 } from './pages/Web3/Web3';
 import Header from './components/Header';
 import Page from './components/Page';
 import Scroll from './components/Scroll';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Product from './types';
+import { ethers } from "ethers";
+import Auction from './Auction.json';
 
 const products: Array<Product> = [
   {
@@ -124,6 +126,19 @@ function App() {
   const [offset, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(0)
 
+  const contractAddress = '';
+  let provider: ethers.providers.Web3Provider;
+  let signer;
+  let contract;
+
+  useRef(() => {
+    if (!ethereum)
+      alert('Please install metamask');
+    provider = new ethers.providers.Web3Provider(ethereum);
+    signer = provider.getSigner();
+    contract = new ethers.Contract(contractAddress, Auction.abi, signer);
+  })
+
   return (
 
     <>
@@ -132,6 +147,7 @@ function App() {
       <Header
         activePage={activePage}
         setActivePage={setActivePage}
+        contract={contract as unknown as ethers.Contract}
       />
       {activePage === 0 ?
 

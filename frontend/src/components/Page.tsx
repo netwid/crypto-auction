@@ -1,12 +1,99 @@
 import { Fragment, SetStateAction, useState } from 'react'
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { StarIcon } from '@heroicons/react/solid'
 import Product from '../types';
+
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
+
+let bid = 23423;
+let bidder = "LKj..KJds";
+
+const products = [
+  {
+    id: 1,
+    name: 'floppa',
+    description: 'a very nice loved cat',
+    href: '#',
+    price: '$48',
+    imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
+    imageAlt: '??',
+    owner: 'Kds..sdf',
+    
+  },
+  {
+    id: 2,
+    name: 'floppa2',
+    href: '#',
+    price: '$35',
+    imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/f/f0/Gregory_Caracal.jpg',
+    imageAlt: '?',
+    owner: '2Jsd..Lh',
+  },
+  {
+    id: 3,
+    name: 'floppa3',
+    href: '#',
+    price: '$89',
+    imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/b/bf/Big_Floppa_and_Justin_2_%28cropped%29.jpg',
+    imageAlt: '?',
+    owner: '3Kds..sdf',
+    
+  },
+  {
+    id: 4,
+    name: 'floppa4',
+    href: '#',
+    price: '$35',
+    imageSrc: 'https://i1.sndcdn.com/artworks-vog58LBUoWgkjgPZ-6Ru4Hg-t500x500.jpg',
+    imageAlt: '?',
+    owner: '4Kds..sdf',
+    
+  },
+  {
+    id: 5,
+    name: 'floppa',
+    href: '#',
+    price: '$48',
+    imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
+    imageAlt: '??',
+    owner: '34Kds..sdf',
+    
+  },
+  {
+    id: 6,
+    name: 'floppa',
+    href: '#',
+    price: '$48',
+    imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
+    imageAlt: '??',
+    owner: '987Kds..sdf',
+    
+  },
+  {
+    id: 7,
+    name: 'floppa',
+    href: '#',
+    price: '$48',
+    imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
+    imageAlt: '??',
+    owner: '87Kds..sdf',
+    
+  },
+  {
+    id: 8,
+    name: 'floppa',
+    href: '#',
+    price: '$48',
+    imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
+    imageAlt: '??',
+    owner: '248s..sdf',
+    
+  },
+]
+
 
 export default function Page(props: { products: Array<Product>, offset: number }) {
   const [open, setOpen] = useState(false)
@@ -16,6 +103,8 @@ export default function Page(props: { products: Array<Product>, offset: number }
     setActiveElement(i)
     setOpen(true)
   }
+
+
 
   return (
     <div>
@@ -34,7 +123,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
                     <img
                       src={product.imageSrc}
                       alt={product.imageAlt}
-                      className="w-full h-60 object-center object-cover group-hover:opacity-75"
+                      className="w-full h-80 object-center object-cover group-hover:opacity-75"
                     />
                   </button>
                 </div>
@@ -99,26 +188,56 @@ export default function Page(props: { products: Array<Product>, offset: number }
                         </h3>
 
                         <p className="text-2xl text-gray-900">{props.products[activeElement].description}</p>
+                        </section>
 
-                      </section>
+                    <section className='mt-4 text-2xl'>
+                      <div>Owner: {products[activeElement].owner}</div>
+                      <div>Highest bid: {bid}</div>
+                      <div>Bidder: {bidder}</div>
+                    </section>
 
-                      <section aria-labelledby="options-heading" className="mt-10">
-                        <h3 id="options-heading" className="sr-only">
-                          Bid options
-                        </h3>
+                    <section aria-labelledby="options-heading" className="mt-4">
+                      <h3 id="options-heading" className="sr-only">
+                         Bid options
+                      </h3>
 
-                        <form>
+                      
+                      
+                      <div className='text-2xl mb-3'>
+                        Time to end: {}
+                      </div>
 
-                          <button
-                            type="submit"
-                            className="mt-6 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                          >
-                            Create bid
-                          </button>
-                        </form>
-                      </section>
-                    </div>
+                      <form>
+                        <div className='bg-white text-2xl border-2 p-4 border-indigo-600 rounded-md'>
+                        
+                        <div>
+                          <div className='text-indigo-600 flex justify-center'>Set new bid</div>
+                          <div>Minimal value: </div>
+                          <div>Enter value:
+                          <input
+                                    type="number"
+                                    placeholder="0.0"
+                                    className="h-7 ml-7 w-60 bg-transparent border-2 border-grey"
+                                    style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF" }}
+                                />
+              
+                           </div>
+                        </div>
+                          <div className='flex justify-center'>
+                      
+                            <button
+                              type="submit"
+                              className="mt-6 bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                              Create bid 
+                            </button>
+                          </div>
+                          
+                        </div>
+                      </form>
+                    </section>
                   </div>
+                </div>
                 </div>
               </div>
             </Transition.Child>
