@@ -1,8 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import { Wallet } from './Wallet/Wallet';
-import { Create } from './Create/Create';
+import { HeaderInfo } from './HeaderInfo/HeaderInfo';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -53,9 +52,7 @@ export default function Header( props:{ setActivePage: Function, activePage: num
                 </div>
               </div>
               
-              <Create />
-
-              <Wallet />
+              <HeaderInfo />
 
             </div>
           </div>
