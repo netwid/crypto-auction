@@ -20,8 +20,12 @@ contract Auction {
     Lot[] public lots;
     uint256 counter;
 
+    constructor(){
+        counter = 0;
+    }
+
     function getID() private returns (uint256) {
-        return ++counter;
+        return counter++;
     }
 
     function getAllLots() public view returns (Lot[] memory) {
@@ -64,7 +68,7 @@ contract Auction {
         string memory _imageURL,
         uint256 _minimalBidIncrement,
         uint256 _auctionEndTime
-    ) public {
+    ) public onlyAfterStart(_auctionEndTime) {
         uint256 newId = getID();
 
         Lot memory newLot = Lot(
@@ -106,11 +110,16 @@ contract Auction {
     }
 
     modifier onlyLotActive(uint256 lotId) {
-        require(lotId <= counter && lotId != 0, "This lot doesn't exist");
+        require(lotId < counter, "This lot doesn't exist");
         require(
             lots[lotId].closed == false,
             "This lot has already been closed"
         );
+        _;
+    }
+
+    modifier onlyAfterStart(uint256 auctionEndTime) {
+        require(block.timestamp < auctionEndTime, "Incorrect time");
         _;
     }
 
