@@ -3,7 +3,7 @@ import { Wallet } from '../Wallet/Wallet';
 
 export const HeaderInfo = () => {
     if (!window.ethereum)
-        return <div>Please install metamask</div>
+        return <div className='text-white'>Please install metamask</div>
     
     return (
         <div>
