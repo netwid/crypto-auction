@@ -1,12 +1,14 @@
 import { Fragment, useState } from 'react'
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { StarIcon } from '@heroicons/react/solid'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
+let bid = 23423;
+let bidder = "LKj..KJds";
+let owner = "Ksjd..Ljsa"
 
 const products = [
   {
@@ -52,7 +54,7 @@ const products = [
     imageAlt: '??',
   },
   {
-    id: 5,
+    id: 6,
     name: 'floppa',
     href: '#',
     price: '$48',
@@ -60,7 +62,7 @@ const products = [
     imageAlt: '??',
   },
   {
-    id: 5,
+    id: 7,
     name: 'floppa',
     href: '#',
     price: '$48',
@@ -68,50 +70,21 @@ const products = [
     imageAlt: '??',
   },
   {
-    id: 5,
+    id: 8,
     name: 'floppa',
     href: '#',
     price: '$48',
     imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
     imageAlt: '??',
   },
-  {
-    id: 5,
-    name: 'floppa',
-    href: '#',
-    price: '$48',
-    imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
-    imageAlt: '??',
-  },
-  {
-    id: 5,
-    name: 'floppa',
-    href: '#',
-    price: '$48',
-    imageSrc: 'https://i.kym-cdn.com/entries/icons/original/000/034/421/cover1.jpg',
-    imageAlt: '??',
-  },
-  {
-    id: 2,
-    name: 'floppa2',
-    href: '#',
-    price: '$35',
-    imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/f/f0/Gregory_Caracal.jpg',
-    imageAlt: '?',
-  },
-  {
-    id: 2,
-    name: 'floppa2',
-    href: '#',
-    price: '$35',
-    imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/f/f0/Gregory_Caracal.jpg',
-    imageAlt: '?',
-  },
+  
 ]
 
 
 export default function Page() {
   const [open, setOpen] = useState(false)
+
+
 
   return (
     <div>
@@ -130,7 +103,7 @@ export default function Page() {
                   <img
                     src={product.imageSrc}
                     alt={product.imageAlt}
-                    className="w-full h-60 object-center object-cover group-hover:opacity-75"
+                    className="w-full h-80 object-center object-cover group-hover:opacity-75"
                   />
                   </button>
                 </div>
@@ -195,22 +168,41 @@ export default function Page() {
                       </h3>
 
                       <p className="text-2xl text-gray-900">{products[0].description}</p>
-                      
-                    </section>
 
-                    <section aria-labelledby="options-heading" className="mt-10">
+                  
+                    </section>
+                    <section className='mt-4 text-2xl'>
+                      <div>Owner: {owner}</div>
+                      <div>Highest bid: {bid}</div>
+                      <div>Bidder: {bidder}</div>
+                      
+
+                    </section>
+                    <section aria-labelledby="options-heading" className="mt-4">
                       <h3 id="options-heading" className="sr-only">
                          Bid options
                       </h3>
+                      <div className='text-2xl mb-3'>
+                        Time to end: {}
+                      </div>
 
                       <form>
+                        <div className='bg-white text-2xl border-2 p-4 border-indigo-600 rounded-md'>
+                        <div>
+                          <div className='text-indigo-600 flex justify-center'>Set new bid</div>
+                          <div>Minimal value: </div>
+                          <div>Enter value: </div>
+                        </div>
+                        <div className='flex justify-center'>
                     
-                        <button
-                          type="submit"
-                          className="mt-6 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                          Create bid 
-                        </button>
+                          <button
+                            type="submit"
+                            className="mt-6 bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                          >
+                            Create bid 
+                          </button>
+                        </div>
+                        </div>
                       </form>
                     </section>
                   </div>
