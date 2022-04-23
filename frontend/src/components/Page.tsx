@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, SetStateAction, useState } from 'react'
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import { StarIcon } from '@heroicons/react/solid'
@@ -52,7 +52,7 @@ const products = [
     imageAlt: '??',
   },
   {
-    id: 5,
+    id: 6,
     name: 'floppa',
     href: '#',
     price: '$48',
@@ -60,7 +60,7 @@ const products = [
     imageAlt: '??',
   },
   {
-    id: 5,
+    id: 7,
     name: 'floppa',
     href: '#',
     price: '$48',
@@ -68,7 +68,7 @@ const products = [
     imageAlt: '??',
   },
   {
-    id: 5,
+    id: 8,
     name: 'floppa',
     href: '#',
     price: '$48',
@@ -76,7 +76,7 @@ const products = [
     imageAlt: '??',
   },
   {
-    id: 5,
+    id: 9,
     name: 'floppa',
     href: '#',
     price: '$48',
@@ -84,7 +84,7 @@ const products = [
     imageAlt: '??',
   },
   {
-    id: 5,
+    id: 10,
     name: 'floppa',
     href: '#',
     price: '$48',
@@ -92,7 +92,7 @@ const products = [
     imageAlt: '??',
   },
   {
-    id: 2,
+    id: 11,
     name: 'floppa2',
     href: '#',
     price: '$35',
@@ -100,7 +100,7 @@ const products = [
     imageAlt: '?',
   },
   {
-    id: 2,
+    id: 12,
     name: 'floppa2',
     href: '#',
     price: '$35',
@@ -112,6 +112,12 @@ const products = [
 
 export default function Page() {
   const [open, setOpen] = useState(false)
+  const [activeElement, setActiveElement] = useState(0)
+
+  function show(i: SetStateAction<number>){
+    setActiveElement(i)
+    setOpen(true)
+  }
 
   return (
     <div>
@@ -121,12 +127,12 @@ export default function Page() {
           <h2 className="sr-only">Auctions</h2>
 
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {products.map((product) => (
+            {products.map((product, ind) => (
               <a key={product.id} href={product.href} className="group">
                 <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                 <button
                 type="button"
-                onClick={() => setOpen(true)}>
+                onClick={() => show(ind)}>
                   <img
                     src={product.imageSrc}
                     alt={product.imageAlt}
@@ -184,17 +190,17 @@ export default function Page() {
 
                 <div className="w-full grid grid-cols-1 gap-y-8 gap-x-6 items-start sm:grid-cols-12 lg:gap-x-8">
                   <div className="aspect-w-2 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">
-                    <img src={products[0].imageSrc} alt={products[0].imageAlt} className="object-center object-cover" />
+                    <img src={products[activeElement].imageSrc} alt={products[activeElement].imageAlt} className="object-center object-cover" />
                   </div>
                   <div className="sm:col-span-8 lg:col-span-7">
-                    <h2 className="text-2xl font-extrabold text-gray-900 sm:pr-12">{products[0].name}</h2>
+                    <h2 className="text-2xl font-extrabold text-gray-900 sm:pr-12">{products[activeElement].name}</h2>
 
                     <section aria-labelledby="information-heading" className="mt-2">
                       <h3 id="information-heading" className="sr-only">
                         Auction information
                       </h3>
 
-                      <p className="text-2xl text-gray-900">{products[0].description}</p>
+                      <p className="text-2xl text-gray-900">{products[activeElement].description}</p>
                       
                     </section>
 
