@@ -55,9 +55,10 @@ export default function Page(props: { products: Array<Product>, offset: number }
               <div>Enter value:
                 <input
                   type="number"
-                  placeholder="0.0"
+                  placeholder="0"
                   className="h-7 ml-7 w-60 bg-transparent border-2 border-grey"
-                  style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF" }}
+                  style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
+                  min={props.products[activeElement].bid + 1}
                 />
 
               </div>
