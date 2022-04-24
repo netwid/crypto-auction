@@ -16,9 +16,9 @@ export const Buy = (props: { lotId: BigNumber }) => {
 
     return (
         <form>
-            <div className='bg-white text-2xl border-2 p-4 border-indigo-600 rounded-md'>
+            <div className='bg-white shadow-lg ml-40 mt-10 w-7/12 text-2xl border-2 p-4 border-gray-800 rounded-md'>
                 <div>
-                    <div className='text-indigo-600 flex justify-center'>Set new bid</div>
+                    <div className='text-indigo-600 mb-4 flex justify-center'>Set new bid</div>
                     <div>Minimal value: </div>
                     <div>Enter value:
                         <input

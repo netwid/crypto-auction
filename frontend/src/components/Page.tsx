@@ -5,8 +5,8 @@ import Product from '../utils/types';
 import { getAllLots } from './Contract';
 import { Lot } from './Lot';
 import { Buy } from './Buy/Buy';
+import {useTimer } from 'react-timer-hook';
 
-import { useTimer } from 'react-timer-hook';
 
 
 function classNames(...classes: string[]) {
@@ -133,50 +133,47 @@ export default function Page(props: { products: Array<Product>, offset: number }
                     <XIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
 
-                  <div className="w-full grid grid-cols-1 gap-y-8 gap-x-6 items-start sm:grid-cols-12 lg:gap-x-8">
-                    <div className="aspect-w-2 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">
-                      {
-                        products1[activeElement] != null &&
-                        <img src={products1[activeElement].imageURL} alt={products1[activeElement].description} className="object-center object-cover" />
-                      }
-                    </div>
-                    <div className="sm:col-span-8 lg:col-span-7">
-                      <h2 className="text-2xl font-extrabold text-gray-900 sm:pr-12">{props.products[activeElement].name}</h2>
 
-                      <section aria-labelledby="information-heading" className="mt-2">
-                        <h3 id="information-heading" className="sr-only">
-                          Auction information
-                        </h3>
+                      <div className="aspect-w-3 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">
 
-                        <p className="text-2xl text-gray-900">{props.products[activeElement].description}</p>
-                      </section>
-                      {
-                        products1[activeElement] != null &&
-                        <section className='mt-4 text-2xl'>
-                          <div>Owner: {products1[activeElement].owner.slice(2, 5) + '...' + products1[activeElement].owner.slice(-3)}</div>
-                          <div>Highest bid: {products1[activeElement].highestBid.toNumber()}</div>
-                          <div>Bidder: {products1[activeElement].highestBidder.toString().slice(2, 5) + '...' + products1[activeElement].highestBidder.toString().slice(-3)}</div>
+
+                        <section aria-labelledby="information-heading" className="mt-2">
+                          <h3 id="information-heading" className="sr-only">
+                            Auction information
+                          </h3>
+
+                          <p className="text-2xl text-gray-900 italic" >"{props.products[activeElement].description}"</p>
                         </section>
-                      }
-
-                      <section aria-labelledby="options-heading" className="mt-4">
-                        <h3 id="options-heading" className="sr-only">
-                          Bid options
-                        </h3>
-
-                        <div className='text-2xl mb-3'>
-                          Time to end: { }
-                        </div>
                         {
                           products1[activeElement] != null &&
-                          <Buy lotId={products1[activeElement].id} />
+                          <section className='mt-4 text-2xl'>
+                            <div>Owner: {products1[activeElement].owner.slice(2, 5) + '...' + products1[activeElement].owner.slice(-3)}</div>
+                            <div>Highest bid: {products1[activeElement].highestBid.toNumber()}</div>
+                            <div>Bidder: {products1[activeElement].highestBidder.toString().slice(2, 5) + '...' + products1[activeElement].highestBidder.toString().slice(-3)}</div>
+                          </section>
                         }
-                      </section>
 
-                    </div>
+                        <section aria-labelledby="options-heading" className="mt-4">
+                          <h3 id="options-heading" className="sr-only">
+                            Bid options
+                          </h3>
+
+                          <div className='text-2xl mb-3'>
+                            Time to end: { }
+                          </div>
+                          </section>
+                            <div>
+                            {
+                              products1[activeElement] != null &&
+                              <Buy lotId={products1[activeElement].id} />
+                            }
+                          </div>
+                      </div>
+
+                    
                   </div>
                 </div>
-              </div>
+              
             </Transition.Child>
           </div>
         </Dialog>
