@@ -4,6 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 import Product from '../utils/types';
 import { getAllLots } from './Contract';
 import { Lot } from './Lot';
+import { Buy } from './Buy/Buy';
 
 
 function classNames(...classes: string[]) {
@@ -108,8 +109,8 @@ export default function Page(props: { products: Array<Product>, offset: number }
                   <div className="w-full grid grid-cols-1 gap-y-8 gap-x-6 items-start sm:grid-cols-12 lg:gap-x-8">
                     <div className="aspect-w-2 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">
                       {
-                      products1[activeElement] != null &&
-                      <img src={products1[activeElement].imageURL} alt={products1[activeElement].description} className="object-center object-cover" />
+                        products1[activeElement] != null &&
+                        <img src={products1[activeElement].imageURL} alt={products1[activeElement].description} className="object-center object-cover" />
                       }
                     </div>
                     <div className="sm:col-span-8 lg:col-span-7">
@@ -139,35 +140,10 @@ export default function Page(props: { products: Array<Product>, offset: number }
                         <div className='text-2xl mb-3'>
                           Time to end: { }
                         </div>
-
-                        <form>
-                          <div className='bg-white text-2xl border-2 p-4 border-indigo-600 rounded-md'>
-
-                            <div>
-                              <div className='text-indigo-600 flex justify-center'>Set new bid</div>
-                              <div>Minimal value: </div>
-                              <div>Enter value:
-                                <input
-                                  type="number"
-                                  placeholder="0.0"
-                                  className="h-7 ml-7 w-60 bg-transparent border-2 border-grey"
-                                  style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF" }}
-                                />
-
-                              </div>
-                            </div>
-                            <div className='flex justify-center'>
-
-                              <button
-                                type="submit"
-                                className="mt-6 bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                              >
-                                Create bid
-                              </button>
-                            </div>
-
-                          </div>
-                        </form>
+                        {
+                          products1[activeElement] != null &&
+                          <Buy lotId={products1[activeElement].id} />
+                        }
                       </section>
                     </div>
                   </div>
