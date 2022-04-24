@@ -126,9 +126,9 @@ export default function Page(props: { products: Array<Product>, offset: number }
                       {
                         products1[activeElement] != null &&
                         <section className='mt-4 text-2xl'>
-                          <div>Owner: {products1[activeElement].owner}</div>
+                          <div>Owner: {products1[activeElement].owner.slice(2, 5) + '...' + products1[activeElement].owner.slice(-3)}</div>
                           <div>Highest bid: {products1[activeElement].highestBid.toNumber()}</div>
-                          <div>Bidder: {products1[activeElement].highestBidder}</div>
+                          <div>Bidder: {products1[activeElement].highestBidder.toString().slice(2, 5) + '...' + products1[activeElement].highestBidder.toString().slice(-3)}</div>
                         </section>
                       }
 
