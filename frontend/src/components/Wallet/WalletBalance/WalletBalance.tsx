@@ -8,7 +8,7 @@ export const WalletBalance = () => {
         const [account] = await ethereum.request({ method: 'eth_requestAccounts' });
         const provider = new ethers.providers.Web3Provider(ethereum);
         const balance = await provider.getBalance(account);
-        setBalance(ethers.utils.formatEther(balance));
+        setBalance(ethers.utils.formatEther(balance).slice(0, 9));
     }
 
     updateBalance();
@@ -21,6 +21,6 @@ export const WalletBalance = () => {
     }, []);
 
     return (
-        <div className="pr-9">Your balance: {balance}</div>
+        <div>Balance: {balance}</div>
     )
 }

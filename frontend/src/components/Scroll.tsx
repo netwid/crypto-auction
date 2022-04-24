@@ -1,8 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import Product from '../types';
-
+import Product from '../utils/types';
 let resultsNumber = 20;
 
 export default function Scroll(props: { items: Array<Product>, itemsPerPage: number, offset: number, setOffset: Function }) {
@@ -31,7 +30,7 @@ export default function Scroll(props: { items: Array<Product>, itemsPerPage: num
           <span className="font-medium">{props.items.length}</span> results
         </p>
       </div>
-     {props.items.length > 7 && <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+      <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
         <ReactPaginate
           breakLabel="..."
           nextLabel="next >"
@@ -46,7 +45,7 @@ export default function Scroll(props: { items: Array<Product>, itemsPerPage: num
           activeClassName='z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium'
           breakClassName='bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium'
         />
-      </nav>} 
+      </nav>
     </div>
   )
 }
