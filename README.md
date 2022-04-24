@@ -11,5 +11,3 @@ In light of previous events, it is obvious that one **cannot trust** his money a
 **We propose new form of conducting auctions, with the power of web3 and new decentralized techonologies.**
 For mvp and proof-of-concept, we chose **open english auction**, as the most classic variant.
 During 2 days of coding, we implemented dApp with back-end as *Solidity smart contract* and front-end as *React + taildwind*
-
-

@@ -149,8 +149,10 @@ export default function Page(props: { products: Array<Product>, offset: number }
                           <h3 id="information-heading" className="sr-only">
                             Auction information
                           </h3>
-
-                          <p className="text-2xl text-gray-900 italic" >"{props.products[activeElement].description}"</p>
+                          {
+                            products1[activeElement] != null &&
+                            <p className="text-2xl text-gray-900 italic" >"{products1[activeElement].description}"</p>
+                          }
                         </section>
                         {
                           products1[activeElement] != null &&
@@ -166,11 +168,11 @@ export default function Page(props: { products: Array<Product>, offset: number }
                             <div>Highest bid: {products1[activeElement].highestBid.toNumber()}</div>
                             <div>
                               Bidder: <a href={`https://ropsten.etherscan.io/address/${products1[activeElement].highestBidder.toString()}`}
-                                  className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-                                  target="_blank"
-                                  rel="noreferrer">
-                                  {products1[activeElement].highestBidder.toString().slice(2, 5) + '...' + products1[activeElement].highestBidder.toString().slice(-3)}
-                                </a>
+                                className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+                                target="_blank"
+                                rel="noreferrer">
+                                {products1[activeElement].highestBidder.toString().slice(2, 5) + '...' + products1[activeElement].highestBidder.toString().slice(-3)}
+                              </a>
                             </div>
                           </section>
                         }

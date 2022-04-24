@@ -16,7 +16,7 @@ export const LotAction = (props: { lot: Lot }) => {
         const fetchData = async () => {
             await updateAddress();
         }
-        
+
         fetchData().catch(console.error);
     }, []);
 
