@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Buy } from "../Buy/Buy";
+import { Buy } from "../LotAction/Buy/Buy";
 import { getAllLots } from '../Contract';
 
 export const Lot = () => {

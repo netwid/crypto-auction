@@ -5,7 +5,7 @@ import { XIcon } from '@heroicons/react/outline'
 import Product from '../utils/types';
 import { getAllLots } from './Contract';
 import { Lot } from './Lot';
-import { Buy } from './Buy/Buy';
+import { LotAction } from './LotAction/LotAction';
 import {useTimer } from 'react-timer-hook';
 
 
@@ -170,7 +170,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
                           </section>
                           {
                             products1[activeElement] != null &&
-                            <Buy lotId={products1[activeElement].id} />
+                            <LotAction lot={products1[activeElement]} />
                           }
                         
                       </div>
