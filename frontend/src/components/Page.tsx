@@ -107,7 +107,10 @@ export default function Page(props: { products: Array<Product>, offset: number }
 
                   <div className="w-full grid grid-cols-1 gap-y-8 gap-x-6 items-start sm:grid-cols-12 lg:gap-x-8">
                     <div className="aspect-w-2 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">
-                      <img src={props.products[activeElement].imageSrc} alt={props.products[activeElement].imageAlt} className="object-center object-cover" />
+                      {
+                      products1[activeElement] != null &&
+                      <img src={products1[activeElement].imageURL} alt={products1[activeElement].description} className="object-center object-cover" />
+                      }
                     </div>
                     <div className="sm:col-span-8 lg:col-span-7">
                       <h2 className="text-2xl font-extrabold text-gray-900 sm:pr-12">{props.products[activeElement].name}</h2>
@@ -121,19 +124,17 @@ export default function Page(props: { products: Array<Product>, offset: number }
                       </section>
                       {
                         products1[activeElement] != null &&
-                      <section className='mt-4 text-2xl'>
-                        <div>Owner: {products1[activeElement].owner}</div>
-                        <div>Highest bid: {products1[activeElement].highestBid.toNumber()}</div>
-                        <div>Bidder: {products1[activeElement].highestBidder}</div>
-                      </section>
-                      }     
+                        <section className='mt-4 text-2xl'>
+                          <div>Owner: {products1[activeElement].owner}</div>
+                          <div>Highest bid: {products1[activeElement].highestBid.toNumber()}</div>
+                          <div>Bidder: {products1[activeElement].highestBidder}</div>
+                        </section>
+                      }
 
                       <section aria-labelledby="options-heading" className="mt-4">
                         <h3 id="options-heading" className="sr-only">
                           Bid options
                         </h3>
-
-
 
                         <div className='text-2xl mb-3'>
                           Time to end: { }
