@@ -19,7 +19,10 @@ export default function Page(props: { products: Array<Product>, offset: number }
   const [activeElement, setActiveElement] = useState(0);
 
   function show(i: SetStateAction<number>) {
-    setActiveElement(i)
+    // @ts-ignore
+    let asd = i + 2;
+    // @ts-ignore
+    setActiveElement(asd);
     setOpen(true)
   }
 
