@@ -1,8 +1,8 @@
 import { BigNumber } from 'ethers';
 import { useState } from 'react';
-import { placeNewBid } from '../Contract';
+import { placeNewBid } from '../../Contract';
 
-import { LoadingButton } from '../LoadingButton/LoadingButton';
+import { LoadingButton } from '../../LoadingButton/LoadingButton';
 
 export const Buy = (props: { lotId: BigNumber }) => {
     const [bid, setBid] = useState(0);

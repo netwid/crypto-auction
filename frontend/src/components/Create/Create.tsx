@@ -122,6 +122,7 @@ export const Create = () => {
                                                             <div>
                                                                 <div>Minimal bid:
                                                                     <input
+                                                                        min="0"
                                                                         type="number"
                                                                         placeholder="0"
                                                                         className="h-7 ml-7 w-60 bg-transparent border-2 border-grey"

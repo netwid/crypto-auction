@@ -60,7 +60,7 @@ export const startNewAuction = async (
 
 }
 
-export const closeAuction = async (lotId: number) => {
+export const closeAuction = async (lotId: BigNumber) => {
     const auc = await contract.closeAuction(lotId);
 
     await auc.wait();
