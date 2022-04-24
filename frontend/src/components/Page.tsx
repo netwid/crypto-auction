@@ -5,6 +5,7 @@ import Product from '../utils/types';
 import { getAllLots } from './Contract';
 import { Lot } from './Lot';
 import { Buy } from './Buy/Buy';
+import {useTimer } from 'react-timer-hook';
 
 
 function classNames(...classes: string[]) {
