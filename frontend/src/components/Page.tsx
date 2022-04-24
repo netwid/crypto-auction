@@ -16,7 +16,7 @@ function classNames(...classes: string[]) {
 let bid = 23423;
 let bidder = "LKj..KJds";
 
-export default function Page(props: { products: Array<Product>, offset: number }) {
+export default function Page(props: { products: Array<Lot>, offset: number }) {
   const [open, setOpen] = useState(false)
   const [activeElement, setActiveElement] = useState(0);
 
@@ -25,40 +25,30 @@ export default function Page(props: { products: Array<Product>, offset: number }
     setOpen(true)
   }
 
-  const [products1, setProducts1] = useState<Array<Lot>>([]);
 
-  useEffect(() => {
-    const f = async () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      // @ts-ignore
-      setProducts1(await getAllLots());
-      console.log(products1[0]);
-    }
 
-    f();
-  });
   const Desc = () => {
-    const timer = useTimer({ expiryTimestamp: new Date(products1[activeElement].auctionEndTime.toNumber()), autoStart: true })
+    const timer = useTimer({ expiryTimestamp: new Date(props.products[activeElement].auctionEndTime.toNumber()), autoStart: true })
     return <>
 
       {
-        products1[activeElement] != null &&
+        props.products[activeElement] != null &&
         <section className='mt-4 text-2xl'>
           <div>
-            Owner: <a href={`https://ropsten.etherscan.io/address/${products1[activeElement].owner}`}
+            Owner: <a href={`https://ropsten.etherscan.io/address/${props.products[activeElement].owner}`}
               className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
               target="_blank"
               rel="noreferrer">
-              {products1[activeElement].owner.slice(2, 5) + '...' + products1[activeElement].owner.slice(-3)}
+              {props.products[activeElement].owner.slice(2, 5) + '...' + props.products[activeElement].owner.slice(-3)}
             </a>
           </div>
-          <div>Highest bid: {products1[activeElement].highestBid.toNumber()}</div>
+          <div>Highest bid: {props.products[activeElement].highestBid.toNumber()}</div>
           <div>
-            Bidder: <a href={`https://ropsten.etherscan.io/address/${products1[activeElement].highestBidder.toString()}`}
+            Bidder: <a href={`https://ropsten.etherscan.io/address/${props.products[activeElement].highestBidder.toString()}`}
               className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
               target="_blank"
               rel="noreferrer">
-              {products1[activeElement].highestBidder.toString().slice(2, 5) + '...' + products1[activeElement].highestBidder.toString().slice(-3)}
+              {props.products[activeElement].highestBidder.toString().slice(2, 5) + '...' + props.products[activeElement].highestBidder.toString().slice(-3)}
             </a>
           </div>
         </section>
@@ -84,7 +74,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
           <h2 className="sr-only">Auctions</h2>
 
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {products1.slice(props.offset, props.offset + 8).map((product: Lot, ind: number) => (
+            {props.products.slice(props.offset, props.offset + 8).map((product: Lot, ind: number) => (
               // eslint-disable-next-line jsx-a11y/anchor-is-valid
               <a key={product.id.toNumber()} href={'#'} className="group">
                 <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
@@ -156,21 +146,21 @@ export default function Page(props: { products: Array<Product>, offset: number }
 
                         <div className="aspect-w-3 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">
                           {
-                            products1[activeElement] != null &&
-                            <img src={products1[activeElement].imageURL} alt={products1[activeElement].description} className="object-center object-cover" />
+                            props.products[activeElement] != null &&
+                            <img src={props.products[activeElement].imageURL} alt={props.products[activeElement].description} className="object-center object-cover" />
                           }
                         </div>
                       </div>
                       <div className="sm:col-span-8 lg:col-span-7">
-                        <h2 className="text-2xl font-extrabold text-gray-900 sm:pr-12">{props.products[activeElement].name}</h2>
+                        <h2 className="text-2xl font-extrabold text-gray-900 sm:pr-12">{props.products[activeElement]?.name}</h2>
 
                         <section aria-labelledby="information-heading" className="mt-2">
                           <h3 id="information-heading" className="sr-only">
                             Auction information
                           </h3>
                           {
-                            products1[activeElement] != null &&
-                            <p className="text-2xl text-gray-900 italic" >"{products1[activeElement].description}"</p>
+                            props.products[activeElement] != null &&
+                            <p className="text-2xl text-gray-900 italic" >"{props.products[activeElement].description}"</p>
                           }
                         </section>
                         <Desc />
@@ -181,8 +171,8 @@ export default function Page(props: { products: Array<Product>, offset: number }
                   </div>
                   <div className=''>
                     {
-                      products1[activeElement] != null &&
-                      <LotAction lot={products1[activeElement]} />
+                      props.products[activeElement] != null &&
+                      <LotAction lot={props.products[activeElement]} />
                     }
                   </div>
                 </div>
