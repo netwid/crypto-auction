@@ -3,7 +3,7 @@ import { closeAuction } from "../../Contract"
 
 export const Close = (props: {lotId: BigNumber}) => {
     const close = async () => {
-        closeAuction(props.lotId);
+        await closeAuction(props.lotId);
     }
 
     return (
