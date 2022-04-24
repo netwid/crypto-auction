@@ -24,7 +24,8 @@ export default function Page(props: { products: Array<Product>, offset: number }
 
   const Desc = () => {
     const timer = useTimer({ expiryTimestamp: new Date(props.products[activeElement].endTime), autoStart: true })
-    return <><section className='mt-4 text-2xl'>
+    return <>
+    <section className='mt-4 text-2xl'>
       <div>Owner: {props.products[activeElement].owner}</div>
       <div>Highest bid: {props.products[activeElement].bid}</div>
       <div>Bidder: {props.products[activeElement].bidder}</div>
@@ -103,12 +104,15 @@ export default function Page(props: { products: Array<Product>, offset: number }
               leaveFrom="opacity-100 translate-y-0 md:scale-100"
               leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
             >
-              <div className="flex text-base text-left transform transition w-full md:inline-block md:max-w-2xl md:px-4 md:my-8 md:align-middle lg:max-w-4xl">
-                <div className="w-full relative flex-none rounded-lg items-center bg-white px-4 pt-14 pb-8 overflow-hidden shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+              <div className="flex text-base text-left transform transition w-full md:inline-block 
+              md:max-w-2xl md:px-4 md:my-8 md:align-middle lg:max-w-4xl">
+                <div className="w-full relative flex-none rounded-lg items-center bg-white px-4 pt-14
+                 pb-8 overflow-hidden shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
                   <div className='flex'>
                   <button
                     type="button"
-                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8"
+                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6
+                     md:top-6 md:right-6 lg:top-8 lg:right-8"
                     onClick={() => setOpen(false)}
                   >
                     <span className="sr-only">Close</span>
@@ -155,7 +159,9 @@ export default function Page(props: { products: Array<Product>, offset: number }
 
                         <button
                           type="submit"
-                          className="mt-6 bg-indigo-600 shadow-lg border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                          className="mt-6 bg-indigo-600 shadow-lg border border-transparent rounded-md py-3 px-8 
+                          flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none
+                           focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                           Create bid
                         </button>

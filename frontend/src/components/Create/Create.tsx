@@ -1,7 +1,7 @@
-import { Disclosure, Menu, Transition, Dialog } from '@headlessui/react'
+import { Transition, Dialog } from '@headlessui/react'
 import { startNewAuction } from '../Contract';
-import { Fragment, SetStateAction, useEffect, useState } from 'react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Fragment, useEffect, useState } from 'react'
+import {  XIcon } from '@heroicons/react/outline'
 import { Upload } from './Upload/Upload';
 import { Contract } from 'ethers';
 
@@ -58,7 +58,8 @@ export const Create = () => {
                             leaveFrom="opacity-100 translate-y-0 md:scale-100"
                             leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
                         >
-                            <div className="flex items-center justify-center text-base text-left transform transition w-full md:inline-block md:max-w-2xl md:px-4 md:my-8 md:align-middle lg:max-w-4xl">
+                            <div className="flex items-center justify-center text-base text-left transform transition w-full 
+                            md:inline-block md:max-w-2xl md:px-4 md:my-8 md:align-middle lg:max-w-4xl">
                                 <div className="w-11/12 relative flex rounded-lg items-center bg-white px-4 pt-14 pb-8 overflow-hidden shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
                                     <button
                                         type="button"
@@ -87,7 +88,7 @@ export const Create = () => {
                                                                 Name: { }
                                                                 <input
                                                                     type="text"
-                                                                    className="h-7 ml-20 w-60 bg-transparent border-2 border-grey"
+                                                                    className="h-7 mb-2 ml-20 w-60 bg-transparent border-2 border-grey"
                                                                     style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
                                                                     value={name}
                                                                     onInput={e => setName((e.target as HTMLInputElement).value)}
@@ -97,7 +98,7 @@ export const Create = () => {
                                                                 Description: { }
                                                                 <input
                                                                     type="text"
-                                                                    className="h-7 ml-6 w-60 bg-transparent border-2 border-grey"
+                                                                    className="h-7 ml-6 mb-2 w-60 bg-transparent border-2 border-grey"
                                                                     style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
                                                                     value={description}
                                                                     onInput={e => setDescription((e.target as HTMLInputElement).value)}
@@ -107,7 +108,7 @@ export const Create = () => {
                                                                 Time to end: { }
                                                                 <input
                                                                     id="datetime" type="datetime-local"
-                                                                    className=" h-7 ml-5 w-60 bg-transparent border-2 border-grey"
+                                                                    className=" h-7 mb-2 ml-5 w-60 bg-transparent border-2 border-grey"
                                                                     style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
                                                                     value={new Date(auctionEndTime).toISOString().slice(0, -5)}
                                                                     onInput={e => setAuctionEndTime(+new Date((e.target as HTMLInputElement).value))}
