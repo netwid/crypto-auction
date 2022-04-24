@@ -21,13 +21,13 @@ export const LotAction = (props: { lot: Lot }) => {
     }, []);
 
     if (props.lot.owner.toLowerCase() === address.toLowerCase()) {
-        if (props.lot.auctionEndTime > (Date.now() as unknown as BigNumber))
+        if (props.lot.auctionEndTime > (BigNumber.from(Date.now())))
             return <div>You can't buy yourself lot</div>
         else
             return <Close lotId={props.lot.id} />
     }
 
-    if (props.lot.auctionEndTime > (Date.now() as unknown as BigNumber))
+    if (props.lot.auctionEndTime > BigNumber.from(Date.now()))
         return <Buy lot={props.lot} />
     return <div>Auction ended</div>
 }
