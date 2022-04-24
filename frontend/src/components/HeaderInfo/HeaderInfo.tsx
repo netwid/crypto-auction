@@ -6,7 +6,7 @@ export const HeaderInfo = () => {
         return <div className='text-white'>Please install metamask</div>
     
     return (
-        <div>
+        <div className='flex items-center'>
             <Create />
             <Wallet />
         </div>
