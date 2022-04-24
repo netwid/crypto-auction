@@ -1,4 +1,4 @@
-import { Fragment, SetStateAction, useEffect, useState } from 'react'
+import { Fragment, SetStateAction, useState } from 'react'
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import Product from '../types';
@@ -9,23 +9,17 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-let bid = 23423;
+let bid = 23423;  
 let bidder = "LKj..KJds";
 
 export default function Page(props: { products: Array<Product>, offset: number }) {
   const [open, setOpen] = useState(false)
   const [activeElement, setActiveElement] = useState(0)
-  let any: any;
-  const [timers, setTimers] = useState(any)
 
   function show(i: SetStateAction<number>) {
     setActiveElement(i)
     setOpen(true)
   }
-
-
-
-
 
 
   const Desc = () => {
@@ -55,9 +49,10 @@ export default function Page(props: { products: Array<Product>, offset: number }
               <div>Enter value:
                 <input
                   type="number"
-                  placeholder="0.0"
+                  placeholder="0"
                   className="h-7 ml-7 w-60 bg-transparent border-2 border-grey"
-                  style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF" }}
+                  style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
+                  min={props.products[activeElement].bid + 1}
                 />
 
               </div>
@@ -148,7 +143,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
                   </button>
 
                   <div className="w-full grid grid-cols-1 gap-y-8 gap-x-6 items-start sm:grid-cols-12 lg:gap-x-8">
-                    <div className="aspect-w-3 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">
+                    <div className="aspect-w- aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">
                       <img src={props.products[activeElement].imageSrc} alt={props.products[activeElement].imageAlt} className="object-center object-cover" />
                     </div>
                     <div className="sm:col-span-8 lg:col-span-7">
@@ -160,13 +155,13 @@ export default function Page(props: { products: Array<Product>, offset: number }
                         </h3>
 
                         <p className="text-2xl text-gray-900">{props.products[activeElement].description}</p>
-                      </section>
+                        </section>
 
-                      <Desc />
+                        <Desc />
 
-
-                    </div>
+                        
                   </div>
+                </div>
                 </div>
               </div>
             </Transition.Child>
