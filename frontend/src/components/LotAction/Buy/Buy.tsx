@@ -20,8 +20,8 @@ export const Buy = (props: { lotId: BigNumber, minVal: number }) => {
             <div className='bg-white shadow-lg ml- mt-10 text-2xl border-2 p-4 border-gray-800 rounded-md'>
                 <div>
                     <div className='text-indigo-600 mb-4 flex justify-center semibold-bold'>Set new bid</div>
-                    <div>Minimal value: {props.minVal}</div>
-                    <div>Enter value:
+                    <div className='ml-28'>Minimal value: {props.minVal}</div>
+                    <div className='ml-28'>Enter value:
                         <input
                             type="number"
                             step="0.01"
