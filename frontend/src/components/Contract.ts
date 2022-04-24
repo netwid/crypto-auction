@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import Auction from '../utils/Auction.json';
 import { Lot } from "./Lot";
 
@@ -8,7 +8,7 @@ const signer = provider.getSigner();
 const contract = new ethers.Contract(contractAddress, Auction.abi, signer);
 
 // bid amount - amount for new bid in wei
-export const placeNewBid = async (lotId: number, bidAmount: number) => {
+export const placeNewBid = async (lotId: BigNumber, bidAmount: number) => {
     const bidRes = await contract.placeBid(lotId, {
         value: bidAmount
     });
