@@ -13,6 +13,6 @@ export const WalletAddress = () => {
     });
 
     return (
-        <div>Your wallet: {address}</div>
+        <div className="pr-3">Your wallet: {address}</div>
     )
 }
