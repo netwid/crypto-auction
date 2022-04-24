@@ -1,6 +1,6 @@
 import { Disclosure, Menu, Transition, Dialog } from '@headlessui/react'
 import { startNewAuction } from '../Contract';
-import { Fragment, SetStateAction, useState } from 'react'
+import { Fragment, SetStateAction, useEffect, useState } from 'react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Upload } from './Upload/Upload';
 import { Contract } from 'ethers';
@@ -17,6 +17,10 @@ export const Create = () => {
         console.log(name, description, imageURL, minimalBidIncrement, auctionEndTime);
         startNewAuction(null as unknown as Contract, name, description, imageURL, minimalBidIncrement, auctionEndTime);
     }
+
+    useEffect(() => {
+        setAuctionEndTime(Date.now());
+    }, []);
 
     return (
         <>
@@ -105,8 +109,8 @@ export const Create = () => {
                                                                     id="datetime" type="datetime-local"
                                                                     className=" h-7 ml-5 w-60 bg-transparent border-2 border-grey"
                                                                     style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
-                                                                    value={auctionEndTime}
-                                                                    onInput={e => setAuctionEndTime(Number.parseInt((e.target as HTMLInputElement).value))}
+                                                                    value={new Date(auctionEndTime).toISOString().slice(0, -5)}
+                                                                    onInput={e => setAuctionEndTime(+new Date((e.target as HTMLInputElement).value))}
                                                                 />
                                                             </div>
 
