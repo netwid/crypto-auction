@@ -55,7 +55,7 @@ export const Upload = (props: { changeUrl: React.Dispatch<SetStateAction<string>
                                 m-0
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                                 "
-                            type="file" />
+                            type="file" onChange={onFileChange} />
                     </div>
                 </div>
 
