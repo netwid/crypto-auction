@@ -21,7 +21,8 @@ export default function Page(props: { products: Array<Lot>, offset: number }) {
   const [activeElement, setActiveElement] = useState(0);
 
   function show(i: SetStateAction<number>) {
-    setActiveElement(i)
+    // @ts-ignore
+    setActiveElement(i+3)
     setOpen(true)
   }
 
@@ -74,7 +75,7 @@ export default function Page(props: { products: Array<Lot>, offset: number }) {
           <h2 className="sr-only">Auctions</h2>
 
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {props.products.slice(props.offset, props.offset + 8).map((product: Lot, ind: number) => (
+            {products1.slice(3, props.offset + 8).map((product: Lot, ind: number) => (
               // eslint-disable-next-line jsx-a11y/anchor-is-valid
               <a key={product.id.toNumber()} href={'#'} className="group">
                 <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
