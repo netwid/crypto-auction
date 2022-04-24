@@ -15,7 +15,7 @@ export const Create = () => {
 
     const create = async () => {
         console.log(name, description, imageURL, minimalBidIncrement, auctionEndTime);
-        startNewAuction(null as unknown as Contract, name, description, imageURL, minimalBidIncrement, auctionEndTime);
+        startNewAuction(name, description, imageURL, minimalBidIncrement, auctionEndTime);
     }
 
     useEffect(() => {

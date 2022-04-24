@@ -29,7 +29,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
       // eslint-disable-next-line react-hooks/exhaustive-deps
       // @ts-ignore
       setProducts1(await getAllLots());
-      console.log(products1[0]);
+      //console.log(products1[0]);
     }
 
     f();

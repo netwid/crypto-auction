@@ -20,29 +20,29 @@ export const placeNewBid = async (lotId: number, bidAmount: number) => {
 
 
 export const getAllLots = async (): Promise<Array<Lot>> => {
-        const unformatedLots: Lot[] = await contract.getAllLots();
+    const unformatedLots: Lot[] = await contract.getAllLots();
 
-        const allLots: Array<Lot> = [];
+    const allLots: Array<Lot> = [];
 
-        for (let lot of unformatedLots) {
+    for (let lot of unformatedLots) {
 
-            // to properly format lot info
-            let formatLot: Lot = {
-                id: lot.id,
-                name: lot.name,
-                description: lot.description,
-                imageURL: lot.imageURL,
-                owner: lot.owner,
-                closed: lot.closed,
-                highestBid: lot.highestBid,
-                highestBidder: lot.highestBidder,
-                minimalBidIncrement: lot.minimalBidIncrement,
-                auctionEndTime: lot.auctionEndTime
-            }
-            allLots.push(formatLot);
+        // to properly format lot info
+        let formatLot: Lot = {
+            id: lot.id,
+            name: lot.name,
+            description: lot.description,
+            imageURL: lot.imageURL,
+            owner: lot.owner,
+            closed: lot.closed,
+            highestBid: lot.highestBid,
+            highestBidder: lot.highestBidder,
+            minimalBidIncrement: lot.minimalBidIncrement,
+            auctionEndTime: lot.auctionEndTime
         }
-        console.log(allLots);
-        return allLots;
+        allLots.push(formatLot);
+    }
+    //console.log(allLots);
+    return allLots;
 }
 
 export const startNewAuction = async (
