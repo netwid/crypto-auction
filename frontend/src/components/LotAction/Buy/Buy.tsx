@@ -1,18 +1,23 @@
-import { BigNumber } from 'ethers';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { placeNewBid } from '../../Contract';
 
 import { LoadingButton } from '../../LoadingButton/LoadingButton';
+import { Lot } from '../../Lot';
 
-export const Buy = (props: { lotId: BigNumber }) => {
+export const Buy = (props: { lot: Lot }) => {
     const [bid, setBid] = useState(0);
     const [loading, setLoading] = useState(false);
 
     const buy = async () => {
         setLoading(true);
-        await placeNewBid(props.lotId, bid);
+        await placeNewBid(props.lot.id, bid);
         setLoading(false);
     }
+
+    useEffect(() => {
+        const defaultBid: number = props.lot.highestBid.toNumber() + props.lot.minimalBidIncrement.toNumber();
+        setBid(defaultBid);
+    }, []);
 
     return (
         <div>
@@ -24,7 +29,8 @@ export const Buy = (props: { lotId: BigNumber }) => {
                     <div>Enter value:
                         <input
                             type="number"
-                            step="0.01"
+                            min={props.lot.highestBid.toNumber() + props.lot.minimalBidIncrement.toNumber()}
+                            step={props.lot.minimalBidIncrement.toNumber()}
                             placeholder="0.0"
                             className="h-7 ml-7 w-60 bg-transparent border-2 border-grey"
                             style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000" }}
@@ -52,4 +58,8 @@ export const Buy = (props: { lotId: BigNumber }) => {
         </form>
         </div>
     )
+}
+
+function useRef(arg0: () => void) {
+    throw new Error('Function not implemented.');
 }
