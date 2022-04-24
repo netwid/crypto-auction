@@ -132,7 +132,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
 
                     <div className="w-full grid grid-cols-1 gap-y-8 gap-x-6 items-start sm:grid-cols-12 lg:gap-x-8">
 
-                      <div className="aspect-w-2 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">
+                      <div className="aspect-w-3 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">
                         {
                           products1[activeElement] != null &&
                           <img src={products1[activeElement].imageURL} alt={products1[activeElement].description} className="object-center object-cover" />
@@ -146,7 +146,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
                             Auction information
                           </h3>
 
-                          <p className="text-2xl text-gray-900">{props.products[activeElement].description}</p>
+                          <p className="text-2xl text-gray-900 italic" >"{props.products[activeElement].description}"</p>
                         </section>
                         {
                           products1[activeElement] != null &&
@@ -165,11 +165,13 @@ export default function Page(props: { products: Array<Product>, offset: number }
                           <div className='text-2xl mb-3'>
                             Time to end: { }
                           </div>
-                          {
-                            products1[activeElement] != null &&
-                            <Buy lotId={products1[activeElement].id} />
-                          }
-                        </section>
+                          </section>
+                            <div>
+                            {
+                              products1[activeElement] != null &&
+                              <Buy lotId={products1[activeElement].id} />
+                            }
+                          </div>
                       </div>
                     </div>
                   </div>
