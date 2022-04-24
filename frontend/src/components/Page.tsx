@@ -1,4 +1,5 @@
 import { Fragment, SetStateAction, useState, useEffect } from 'react';
+import React from 'react';
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import Product from '../utils/types';
@@ -69,7 +70,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
           <h2 className="sr-only">Auctions</h2>
 
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            
+
             {products1.slice(props.offset, props.offset + 8).map((product: Lot, ind: number) => (
               // eslint-disable-next-line jsx-a11y/anchor-is-valid
               <a key={product.id.toNumber()} href={'#'} className="group">
@@ -85,7 +86,8 @@ export default function Page(props: { products: Array<Product>, offset: number }
                   </button>
                 </div>
                 <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
-                <p className="mt-1 text-lg font-medium text-gray-900">{product.highestBid.toNumber()}</p>
+                <p className="mt-1 text-lg font-medium text-gray-900">{
+                  Math.max(product.highestBid.toNumber(), product.minimalBidIncrement.toNumber())}</p>
               </a>
             ))}
           </div>
