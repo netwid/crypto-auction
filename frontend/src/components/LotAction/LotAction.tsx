@@ -16,7 +16,7 @@ export const LotAction = (props: { lot: Lot }) => {
         const fetchData = async () => {
             await updateAddress();
         }
-        
+
         fetchData().catch(console.error);
     }, []);
 
@@ -28,6 +28,6 @@ export const LotAction = (props: { lot: Lot }) => {
     }
 
     if (props.lot.auctionEndTime > (Date.now() as unknown as BigNumber))
-        return <Buy lotId={props.lot.id} />
+        return <Buy lot={props.lot} />
     return <div>Auction ended</div>
 }

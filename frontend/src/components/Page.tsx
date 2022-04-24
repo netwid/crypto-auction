@@ -168,8 +168,10 @@ export default function Page(props: { products: Array<Product>, offset: number }
                           <h3 id="information-heading" className="sr-only">
                             Auction information
                           </h3>
-
-                          <p className="text-2xl text-gray-900 italic" >"{props.products[activeElement].description}"</p>
+                          {
+                            products1[activeElement] != null &&
+                            <p className="text-2xl text-gray-900 italic" >"{products1[activeElement].description}"</p>
+                          }
                         </section>
                         <Desc />
                       </div>
