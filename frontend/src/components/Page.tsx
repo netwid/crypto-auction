@@ -1,4 +1,5 @@
 import { Fragment, SetStateAction, useState, useEffect } from 'react';
+import React from 'react';
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import Product from '../utils/types';
@@ -79,7 +80,8 @@ export default function Page(props: { products: Array<Product>, offset: number }
                   </button>
                 </div>
                 <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
-                <p className="mt-1 text-lg font-medium text-gray-900">{product.highestBid.toNumber()}</p>
+                <p className="mt-1 text-lg font-medium text-gray-900">{
+                  Math.max(product.highestBid.toNumber(), product.minimalBidIncrement.toNumber())}</p>
               </a>
             ))}
           </div>
