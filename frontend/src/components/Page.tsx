@@ -1,77 +1,39 @@
-import { Fragment, SetStateAction, useState } from 'react'
+import { Fragment, SetStateAction, useState, useEffect } from 'react';
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import Product from '../types';
-import { useTimer } from 'react-timer-hook'
+import Product from '../utils/types';
+import { getAllLots } from './Contract';
+import { Lot } from './Lot';
 
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-let bid = 23423;  
+let bid = 23423;
 let bidder = "LKj..KJds";
 
 export default function Page(props: { products: Array<Product>, offset: number }) {
   const [open, setOpen] = useState(false)
-  const [activeElement, setActiveElement] = useState(0)
+  const [activeElement, setActiveElement] = useState(0);
 
   function show(i: SetStateAction<number>) {
     setActiveElement(i)
     setOpen(true)
   }
 
+  const [products1, setProducts1] = useState<Array<Lot>>([]);
 
-  const Desc = () => {
-    const timer = useTimer({ expiryTimestamp: new Date(props.products[activeElement].endTime), autoStart: true })
-    return <><section className='mt-4 text-2xl'>
-      <div>Owner: {props.products[activeElement].owner}</div>
-      <div>Highest bid: {props.products[activeElement].bid}</div>
-      <div>Bidder: {props.products[activeElement].bidder}</div>
-    </section>
-      <section aria-labelledby="options-heading" className="mt-4">
-        <h3 id="options-heading" className="sr-only">
-          Bid options
-        </h3>
+  useEffect(() => {
+    const f = async () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      // @ts-ignore
+      setProducts1(await getAllLots());
+      console.log(products1[0]);
+    }
 
-
-
-        <div className='text-2xl mb-3'>
-          Time to end: {timer.days} days {(timer.hours < 10 ? '0' : '') + timer.hours}:{(timer.minutes < 10 ? '0' : '') + timer.minutes}:{(timer.seconds < 10 ? '0' : '') + timer.seconds}
-        </div>
-
-        <form>
-          <div className='bg-white text-2xl border-2 p-4 border-indigo-600 rounded-md'>
-
-            <div>
-              <div className='text-indigo-600 flex justify-center'>Set new bid</div>
-              <div>Minimal value: {props.products[activeElement].bid + 1}</div>
-              <div>Enter value:
-                <input
-                  type="number"
-                  placeholder="0"
-                  className="h-7 ml-7 w-60 bg-transparent border-2 border-grey"
-                  style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
-                  min={props.products[activeElement].bid + 1}
-                />
-
-              </div>
-            </div>
-            <div className='flex justify-center'>
-
-              <button
-                type="submit"
-                className="mt-6 bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Create bid
-              </button>
-            </div>
-
-          </div>
-        </form>
-      </section>
-    </>
-  }
+    f();
+  });
 
   return (
     <div>
@@ -81,21 +43,22 @@ export default function Page(props: { products: Array<Product>, offset: number }
           <h2 className="sr-only">Auctions</h2>
 
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {props.products.slice(props.offset, props.offset + 8).map((product: Product, ind: number) => (
-              <a key={product.id} href={product.href} className="group">
+            {products1.slice(props.offset, props.offset + 8).map((product: Lot, ind: number) => (
+              // eslint-disable-next-line jsx-a11y/anchor-is-valid
+              <a key={product.id.toNumber()} href={'#'} className="group">
                 <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                   <button
                     type="button"
                     onClick={() => show(ind + props.offset)}>
                     <img
-                      src={product.imageSrc}
-                      alt={product.imageAlt}
+                      src={product.imageURL}
+                      alt={'Lot page'}
                       className="w-full h-80 object-center object-cover group-hover:opacity-75"
                     />
                   </button>
                 </div>
                 <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
-                <p className="mt-1 text-lg font-medium text-gray-900">{product.price}</p>
+                <p className="mt-1 text-lg font-medium text-gray-900">{product.highestBid.toNumber()}</p>
               </a>
             ))}
           </div>
@@ -143,7 +106,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
                   </button>
 
                   <div className="w-full grid grid-cols-1 gap-y-8 gap-x-6 items-start sm:grid-cols-12 lg:gap-x-8">
-                    <div className="aspect-w- aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">
+                    <div className="aspect-w-2 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">
                       <img src={props.products[activeElement].imageSrc} alt={props.products[activeElement].imageAlt} className="object-center object-cover" />
                     </div>
                     <div className="sm:col-span-8 lg:col-span-7">
@@ -155,13 +118,58 @@ export default function Page(props: { products: Array<Product>, offset: number }
                         </h3>
 
                         <p className="text-2xl text-gray-900">{props.products[activeElement].description}</p>
-                        </section>
+                      </section>
+                      {
+                        products1[activeElement] != null &&
+                      <section className='mt-4 text-2xl'>
+                        <div>Owner: {products1[activeElement].owner}</div>
+                        <div>Highest bid: {products1[activeElement].highestBid.toNumber()}</div>
+                        <div>Bidder: {products1[activeElement].highestBidder}</div>
+                      </section>
+                      }     
 
-                        <Desc />
+                      <section aria-labelledby="options-heading" className="mt-4">
+                        <h3 id="options-heading" className="sr-only">
+                          Bid options
+                        </h3>
 
-                        
+
+
+                        <div className='text-2xl mb-3'>
+                          Time to end: { }
+                        </div>
+
+                        <form>
+                          <div className='bg-white text-2xl border-2 p-4 border-indigo-600 rounded-md'>
+
+                            <div>
+                              <div className='text-indigo-600 flex justify-center'>Set new bid</div>
+                              <div>Minimal value: </div>
+                              <div>Enter value:
+                                <input
+                                  type="number"
+                                  placeholder="0.0"
+                                  className="h-7 ml-7 w-60 bg-transparent border-2 border-grey"
+                                  style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF" }}
+                                />
+
+                              </div>
+                            </div>
+                            <div className='flex justify-center'>
+
+                              <button
+                                type="submit"
+                                className="mt-6 bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                              >
+                                Create bid
+                              </button>
+                            </div>
+
+                          </div>
+                        </form>
+                      </section>
+                    </div>
                   </div>
-                </div>
                 </div>
               </div>
             </Transition.Child>
