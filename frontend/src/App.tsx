@@ -198,7 +198,7 @@ function App() {
     signer = provider.getSigner();
     contract = new ethers.Contract(contractAddress, Auction.abi, signer);
   })
-
+  .toString()
   return (
 
     <>
@@ -235,21 +235,6 @@ function App() {
           />
         </>
       }
-
-      <ul>
-        <li>
-          <Link to="/">Main</Link>
-        </li>
-        <li>
-          <Link to="/web3">Web3</Link>
-        </li>
-      </ul>
-      <div>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/web3" element={<Web3 />} />
-        </Routes>
-      </div>
     </>
   );
 }
