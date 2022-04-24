@@ -5,7 +5,7 @@ import Product from '../utils/types';
 import { getAllLots } from './Contract';
 import { Lot } from './Lot';
 import { Buy } from './Buy/Buy';
-
+import { useTimer } from 'react-timer-hook';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -36,12 +36,12 @@ export default function Page(props: { products: Array<Product>, offset: number }
     f();
   });
   const Desc = () => {
-    const timer = useTimer({ expiryTimestamp: new Date(props.products[activeElement].endTime), autoStart: true })
+    const timer = useTimer({ expiryTimestamp: new Date(products1[activeElement].auctionEndTime as unknown as number), autoStart: true })
     return <>
       <section className='mt-4 text-2xl'>
-        <div>Owner: {props.products[activeElement].owner}</div>
-        <div>Highest bid: {props.products[activeElement].bid}</div>
-        <div>Bidder: {props.products[activeElement].bidder}</div>
+        <div>Owner: {products1[activeElement].owner}</div>
+        {/* <div>Highest bid: {products1[activeElement].highestBid}</div> */}
+        <div>Bidder: {products1[activeElement].highestBidder}</div>
       </section>
       <section aria-labelledby="options-heading" className="mt-4">
         <h3 id="options-heading" className="sr-only">
