@@ -1,18 +1,12 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 
-export const Upload = () => {
-    const [file, setFile] = useState("");
-
-    const onFileChange = (event: any) => {
-        setFile(event.target.files[0]);
-    };
-
-    const upload = async () => {
+export const Upload = (props: {changeUrl: React.Dispatch<SetStateAction<string>>}) => {
+    const onFileChange = async (event: any) => {
         let body = new FormData();
         // API key is not sensitive data
         body.set('key', '100aa98ee786fb2d4ffc859b68980878');
-        body.append('image', file);
+        body.append('image', event.target.files[0]);
 
         const url = (await axios({
             method: 'post',
@@ -20,10 +14,8 @@ export const Upload = () => {
             data: body
         }) as any).data.data.url;
 
-        console.log(url);
-
-        return url;
-    }
+        props.changeUrl(url);
+    };
 
     return (
         <div className="flex justify-center">

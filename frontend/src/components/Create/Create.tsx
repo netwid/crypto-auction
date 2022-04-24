@@ -3,18 +3,19 @@ import { startNewAuction } from '../Contract';
 import { Fragment, SetStateAction, useState } from 'react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Upload } from './Upload/Upload';
+import { Contract } from 'ethers';
 
 export const Create = () => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [imageURL, setImageURL] = useState("");
+    const [minimalBidIncrement, setMinimalBidIncrement] = useState(0);
+    const [auctionEndTime, setAuctionEndTime] = useState(0);
 
     const create = async () => {
-        const name = prompt('Enter a name') as string;
-        const description = prompt('Enter a description') as string;
-        const imageURL = prompt('Enter a description)') as string; // To change
-        const minimalBidIncrement = Number.parseInt(prompt('Enter a minimalBidIncrement') as string);
-        const auctionEndTime = Number.parseInt(prompt('Enter a auctionEndTime') as string);
-
-        //startNewAuction(name, description, imageURL, minimalBidIncrement, auctionEndTime);
+        console.log(name, description, imageURL, minimalBidIncrement, auctionEndTime);
+        startNewAuction(null as unknown as Contract, name, description, imageURL, minimalBidIncrement, auctionEndTime);
     }
 
     return (
@@ -84,6 +85,8 @@ export const Create = () => {
                                                                     type="text"
                                                                     className="h-7 ml-20 w-60 bg-transparent border-2 border-grey"
                                                                     style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
+                                                                    value={name}
+                                                                    onInput={e => setName((e.target as HTMLInputElement).value)}
                                                                 />
                                                             </div>
                                                             <div>
@@ -92,6 +95,8 @@ export const Create = () => {
                                                                     type="text"
                                                                     className="h-7 ml-6 w-60 bg-transparent border-2 border-grey"
                                                                     style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
+                                                                    value={description}
+                                                                    onInput={e => setDescription((e.target as HTMLInputElement).value)}
                                                                 />
                                                             </div>
                                                             <div className=''>
@@ -100,6 +105,8 @@ export const Create = () => {
                                                                     id="datetime" type="datetime-local"
                                                                     className=" h-7 ml-5 w-60 bg-transparent border-2 border-grey"
                                                                     style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
+                                                                    value={auctionEndTime}
+                                                                    onInput={e => setAuctionEndTime(Number.parseInt((e.target as HTMLInputElement).value))}
                                                                 />
                                                             </div>
 
@@ -110,17 +117,22 @@ export const Create = () => {
                                                                         placeholder="0"
                                                                         className="h-7 ml-7 w-60 bg-transparent border-2 border-grey"
                                                                         style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#000000" }}
+                                                                        value={minimalBidIncrement}
+                                                                        onInput={e => setMinimalBidIncrement(Number.parseInt((e.target as HTMLInputElement).value))}
                                                                     />
                                                                 </div>
                                                             </div>
 
-                                                            <Upload />
+                                                            <Upload changeUrl={setImageURL} />
+
+                                                            <input id="url" type="hidden" value={imageURL} />
                                                             
                                                             <div className='flex justify-center'>
 
                                                                 <button
                                                                     type="submit"
                                                                     className="bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                                    onClick={create}
                                                                 >
                                                                     Create auction
                                                                 </button>
