@@ -32,19 +32,38 @@ export default function Page(props: { products: Array<Product>, offset: number }
       // eslint-disable-next-line react-hooks/exhaustive-deps
       // @ts-ignore
       setProducts1(await getAllLots());
-      //console.log(products1[0]);
+      console.log(products1[0]);
     }
 
     f();
   });
   const Desc = () => {
-    const timer = useTimer({ expiryTimestamp: new Date(products1[activeElement].auctionEndTime as unknown as number), autoStart: true })
+    const timer = useTimer({ expiryTimestamp: new Date(products1[activeElement].auctionEndTime.toNumber()), autoStart: true })
     return <>
-      <section className='mt-4 text-2xl'>
-        <div>Owner: {products1[activeElement].owner}</div>
-        {/* <div>Highest bid: {products1[activeElement].highestBid}</div> */}
-        <div>Bidder: {products1[activeElement].highestBidder}</div>
-      </section>
+
+      {
+        products1[activeElement] != null &&
+        <section className='mt-4 text-2xl'>
+          <div>
+            Owner: <a href={`https://ropsten.etherscan.io/address/${products1[activeElement].owner}`}
+              className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+              target="_blank"
+              rel="noreferrer">
+              {products1[activeElement].owner.slice(2, 5) + '...' + products1[activeElement].owner.slice(-3)}
+            </a>
+          </div>
+          <div>Highest bid: {products1[activeElement].highestBid.toNumber()}</div>
+          <div>
+            Bidder: <a href={`https://ropsten.etherscan.io/address/${products1[activeElement].highestBidder.toString()}`}
+              className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+              target="_blank"
+              rel="noreferrer">
+              {products1[activeElement].highestBidder.toString().slice(2, 5) + '...' + products1[activeElement].highestBidder.toString().slice(-3)}
+            </a>
+          </div>
+        </section>
+      }
+     
       <section aria-labelledby="options-heading" className="mt-4">
         <h3 id="options-heading" className="sr-only">
           Bid options
@@ -152,38 +171,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
 
                           <p className="text-2xl text-gray-900 italic" >"{props.products[activeElement].description}"</p>
                         </section>
-                        {
-                          products1[activeElement] != null &&
-                          <section className='mt-4 text-2xl'>
-                            <div>
-                              Owner: <a href={`https://ropsten.etherscan.io/address/${products1[activeElement].owner}`}
-                                className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-                                target="_blank"
-                                rel="noreferrer">
-                                {products1[activeElement].owner.slice(2, 5) + '...' + products1[activeElement].owner.slice(-3)}
-                              </a>
-                            </div>
-                            <div>Highest bid: {products1[activeElement].highestBid.toNumber()}</div>
-                            <div>
-                              Bidder: <a href={`https://ropsten.etherscan.io/address/${products1[activeElement].highestBidder.toString()}`}
-                                  className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-                                  target="_blank"
-                                  rel="noreferrer">
-                                  {products1[activeElement].highestBidder.toString().slice(2, 5) + '...' + products1[activeElement].highestBidder.toString().slice(-3)}
-                                </a>
-                            </div>
-                          </section>
-                        }
-
-                        <section aria-labelledby="options-heading" className="mt-4">
-                          <h3 id="options-heading" className="sr-only">
-                            Bid options
-                          </h3>
-
-                          <div className='text-2xl mb-3'>
-                            Time to end: { }
-                          </div>
-                        </section>
+                        <Desc />
                       </div>
 
                     </div>
