@@ -5,7 +5,7 @@ export const WalletAddress = () => {
 
     const updateAddress = async () => {
         const [account] = await ethereum.request({ method: 'eth_requestAccounts' });
-        setAdrress(account.slice(2, 5) + '...' + account.slice(-3));
+        setAdrress(account);
     }
 
     useEffect(() => {
@@ -13,6 +13,11 @@ export const WalletAddress = () => {
     });
 
     return (
-        <div className="pr-3">Your wallet: {address}</div>
+        <div className="pr-3">Your wallet: <a href={`https://ropsten.etherscan.io/address/${address}`}
+            className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+            target="_blank"
+            rel="noreferrer">
+            {address.slice(2, 5) + '...' + address.slice(-3)}
+        </a></div>
     )
 }
