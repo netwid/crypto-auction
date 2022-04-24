@@ -4,7 +4,7 @@ import { placeNewBid } from '../../Contract';
 
 import { LoadingButton } from '../../LoadingButton/LoadingButton';
 
-export const Buy = (props: { lotId: BigNumber }) => {
+export const Buy = (props: { lotId: BigNumber, minVal: number }) => {
     const [bid, setBid] = useState(0);
     const [loading, setLoading] = useState(false);
 
@@ -20,7 +20,7 @@ export const Buy = (props: { lotId: BigNumber }) => {
             <div className='bg-white shadow-lg ml- mt-10 text-2xl border-2 p-4 border-gray-800 rounded-md'>
                 <div>
                     <div className='text-indigo-600 mb-4 flex justify-center semibold-bold'>Set new bid</div>
-                    <div>Minimal value: </div>
+                    <div>Minimal value: {props.minVal}</div>
                     <div>Enter value:
                         <input
                             type="number"
