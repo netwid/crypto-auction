@@ -6,6 +6,8 @@ import { getAllLots } from './Contract';
 import { Lot } from './Lot';
 import { Buy } from './Buy/Buy';
 
+import { useTimer } from 'react-timer-hook';
+
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -38,6 +40,26 @@ export default function Page(props: { products: Array<Product>, offset: number }
 
     f();
   });
+  const Desc = () => {
+    const timer = useTimer({ expiryTimestamp: new Date(products1[activeElement].auctionEndTime as unknown as number), autoStart: true })
+    return <>
+      <section className='mt-4 text-2xl'>
+        <div>Owner: {products1[activeElement].owner}</div>
+        {/* <div>Highest bid: {products1[activeElement].highestBid}</div> */}
+        <div>Bidder: {products1[activeElement].highestBidder}</div>
+      </section>
+      <section aria-labelledby="options-heading" className="mt-4">
+        <h3 id="options-heading" className="sr-only">
+          Bid options
+        </h3>
+
+        <div className='text-2xl mb-5'>
+          Time to end: {timer.days} days {(timer.hours < 10 ? '0' : '') + timer.hours}:{(timer.minutes < 10 ? '0' : '') + timer.minutes}:{(timer.seconds < 10 ? '0' : '') + timer.seconds}
+        </div>
+      </section>
+    </>
+  }
+
 
   return (
     <div>
@@ -47,7 +69,8 @@ export default function Page(props: { products: Array<Product>, offset: number }
           <h2 className="sr-only">Auctions</h2>
 
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {products1.slice(3, props.offset + 8).map((product: Lot, ind: number) => (
+            
+            {products1.slice(props.offset, props.offset + 8).map((product: Lot, ind: number) => (
               // eslint-disable-next-line jsx-a11y/anchor-is-valid
               <a key={product.id.toNumber()} href={'#'} className="group">
                 <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
@@ -98,6 +121,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
               leaveFrom="opacity-100 translate-y-0 md:scale-100"
               leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
             >
+
               <div className="flex text-base text-left transform transition w-full md:inline-block md:max-w-2xl md:px-4 md:my-8 md:align-middle lg:max-w-4xl">
                 <div className="w-full relative flex items-center bg-white px-4 pt-14 pb-8 overflow-hidden shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
                   <button
@@ -148,6 +172,7 @@ export default function Page(props: { products: Array<Product>, offset: number }
                           <Buy lotId={products1[activeElement].id} />
                         }
                       </section>
+
                     </div>
                   </div>
                 </div>

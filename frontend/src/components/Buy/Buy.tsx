@@ -1,6 +1,7 @@
 import { BigNumber } from 'ethers';
 import { useState } from 'react';
 import { placeNewBid } from '../Contract';
+
 import { LoadingButton } from '../LoadingButton/LoadingButton';
 
 export const Buy = (props: { lotId: BigNumber }) => {
@@ -32,7 +33,7 @@ export const Buy = (props: { lotId: BigNumber }) => {
                     </div>
                 </div>
                 <div className='flex justify-center'>
-
+                  
                     {loading ?
                         <LoadingButton />
                         :
