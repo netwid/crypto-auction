@@ -57,7 +57,6 @@ export const startNewAuction = async (
 
     await contr.wait();
 
-    console.log(contr);
 
 }
 

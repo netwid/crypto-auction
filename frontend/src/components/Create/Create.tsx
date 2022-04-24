@@ -4,9 +4,11 @@ import { Fragment, useEffect, useState } from 'react'
 import {  XIcon } from '@heroicons/react/outline'
 import { Upload } from './Upload/Upload';
 import { Contract } from 'ethers';
+import { LoadingButton } from '../LoadingButton/LoadingButton';
 
 export const Create = () => {
     const [open, setOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [imageURL, setImageURL] = useState("");
@@ -15,7 +17,9 @@ export const Create = () => {
 
     const create = async () => {
         console.log(name, description, imageURL, minimalBidIncrement, auctionEndTime);
-        startNewAuction(name, description, imageURL, minimalBidIncrement, auctionEndTime);
+        setLoading(true);
+        await startNewAuction(name, description, imageURL, minimalBidIncrement, auctionEndTime);
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -131,16 +135,22 @@ export const Create = () => {
                                                             <Upload changeUrl={setImageURL} />
 
                                                             <input id="url" type="hidden" value={imageURL} />
-                                                            
+
                                                             <div className='flex justify-center'>
 
-                                                                <button
-                                                                    type="submit"
-                                                                    className="bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                                                    onClick={create}
-                                                                >
-                                                                    Create auction
-                                                                </button>
+
+                                                                {loading ?
+                                                                    <LoadingButton />
+                                                                    :
+                                                                    <button
+                                                                        type="submit"
+                                                                        className="bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                                        onClick={create}
+                                                                    >
+                                                                        Create auction
+                                                                    </button>}
+
+
                                                             </div>
 
 
