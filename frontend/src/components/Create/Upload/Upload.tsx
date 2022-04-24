@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { SetStateAction, useState } from 'react';
 
-export const Upload = (props: {changeUrl: React.Dispatch<SetStateAction<string>>}) => {
+export const Upload = (props: { changeUrl: React.Dispatch<SetStateAction<string>> }) => {
     const onFileChange = async (event: any) => {
         let body = new FormData();
         // API key is not sensitive data
@@ -22,8 +22,9 @@ export const Upload = (props: {changeUrl: React.Dispatch<SetStateAction<string>>
             <div className="">
                 <div className="m-4">
                     <label className="inline-block mb-2 text-black">Image Upload</label>
-                    <div className="flex items-center justify-center w-60">
+                    <div className="flex items-center justify-center flex-col w-60">
                         <label
+                            htmlFor="imageUpload"
                             className="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
                             <div className="flex flex-col items-center justify-center pt-7">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-gray-400 group-hover:text-gray-600"
@@ -34,13 +35,32 @@ export const Upload = (props: {changeUrl: React.Dispatch<SetStateAction<string>>
                                 <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                                     Attach an image</p>
                             </div>
-                            <input type="file" className="opacity-0" onChange={onFileChange} />
+
                         </label>
+                        <input
+                            id="imageUpload"
+                            className="
+                                block
+                                w-full
+                                px-3
+                                py-1.5
+                                text-base
+                                font-normal
+                                text-gray-700
+                                bg-white bg-clip-padding
+                                border border-solid border-gray-300
+                                rounded
+                                transition
+                                ease-in-out
+                                m-0
+                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                                "
+                            type="file" />
                     </div>
                 </div>
 
             </div>
-            
+
         </div>
     )
 }
